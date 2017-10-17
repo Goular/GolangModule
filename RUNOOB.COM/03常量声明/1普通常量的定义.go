@@ -15,7 +15,7 @@ func main() {
 	const a, b, c = 1, false, "加油"
 
 	area = LENGTH * WIDTH;
-	fmt.Println("面积为:%d", area)
+	fmt.Printf("面积为:%d\n", area)
 
 	println()
 	println(a, b, c)
