@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/orlion/p/6574366.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/bundle-LoveIsIntheAir.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/bundle-LoveIsIntheAir-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/orlion/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/orlion/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/orlion/wlwmanifest.xml">
+<script async="" src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/analytics.js"></script><script src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'orlion', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/orlion/"><img id="blogLogo" src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/orlion/">Orlion</a></h1>
+<h2>github.com/orlion</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/orlion/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/orlion">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/orlion/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/orlion/rss"><img src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 231&nbsp;
+文章- 0&nbsp;
+评论- 21&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/orlion/p/6574366.html">Golang 笔记 2 函数、结构体、接口、指针</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1 id="一-函数" data-source-line="1">一、函数</h1>
+<p data-source-line="2">&nbsp;&nbsp;Go中函数是一等(first-class)类型。我们可以把函数当作值来传递和使用。Go中的函数可以返回多个结果。<br>&nbsp;&nbsp;函数类型字面量由关键字func、由圆括号包裹声明列表、空格以及可以由圆括号包裹的结果声明列表组成。其中参数声明列表中的单个参数声明之间是由英文逗号分隔的。每个参数声明由参数名称、空格和参数类型组成。参数声明列表中的参数名称是可以被统一省略的。结果声明列表的编写方式与此相同。结果声明列表中的结果也是可以被省略的，并且在只有一个无名称的结果声明时还可以省略括号。例:</p>
+<pre data-source-line="4"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-params">(input1 string, input2 string) 
+<span class="hljs-built_in">string</span></span></span></span></code></pre>
+<p data-source-line="8">&nbsp;&nbsp;这一类型字面量表示了一个接受两个字符串类型的参数且会返回一个字符串类型的结果的函数。如果我们在它的左边加入type关键字和一个标识符作为名称的话就变成了一个函数类型声明：</p>
+<pre data-source-line="9"><code class="hljs"><span class="hljs-keyword">type MyFunc <span class="hljs-keyword">func(input1 <span class="hljs-typename">string, input2 <span class="hljs-typename">string) 
+<span class="hljs-typename">string</span></span></span></span></span></code></pre>
+<p data-source-line="13">&nbsp;&nbsp;函数值(或简称函数)的写法与此不完全相同。编写函数的时候需要先写关键字func和函数名称，后跟参数声明列表和结果声明列表，最后是花括号包裹的语句列表。例如：</p>
+<pre data-source-line="14"><code class="hljs">func myFunc(part1 <span class="hljs-type">string, part2 <span class="hljs-type">string) 
+(<span class="hljs-literal">result <span class="hljs-type">string) {
+    <span class="hljs-literal">result = part1 + part2
+    <span class="hljs-keyword">return
+}</span></span></span></span></span></span></code></pre>
+<p data-source-line="21">&nbsp;&nbsp;如果结果声明是带名称的，那么它就相当于一个已被声明但未被显示赋值的变量。我们可以为它赋值且在return语句中省略掉需要返回的结果值。该函数还有一种更常规的写法:</p>
+<pre data-source-line="22"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-title">myFunc<span class="hljs-params">(part1 string, part2 string) 
+<span class="hljs-built_in">string {
+    <span class="hljs-keyword">return part1 + part2
+}</span></span></span></span></span></span></code></pre>
+<p data-source-line="28">&nbsp;&nbsp;函数myFunc是函数类型MyFunc的一个实现。实际上，只要一个函数的参数声明列表和结果声明列表中的数据类型顺序和名称与某一个函数类型完全一致，前者就是后者的一个实现。<br>&nbsp;&nbsp;我们可以声明一个函数类型的变量，如：</p>
+<pre data-source-line="30"><code class="hljs"><span class="hljs-keyword">var splice <span class="hljs-keyword">func(<span class="hljs-typename">string, <span class="hljs-typename">string) <span class="hljs-typename">string <span class="hljs-comment">// 等价于var splice MyFunc</span></span></span></span></span></span></code></pre>
+<p data-source-line="33">&nbsp;&nbsp;然后把函数myFunc赋给它:</p>
+<pre data-source-line="34"><code class="hljs"><span class="hljs-attribute">splice =<span class="hljs-string"> myFunc</span></span></code></pre>
+<p data-source-line="37">&nbsp;&nbsp;如此一来，我们就可以在这个变量之上实施调用动作了:</p>
+<pre data-source-line="38"><code class="hljs"><span class="hljs-function"><span class="hljs-title">splice<span class="hljs-params">(<span class="hljs-string">"1", <span class="hljs-string">"2")</span></span></span></span></span></code></pre>
+<p data-source-line="41">&nbsp;&nbsp;实际上，这是一个调用表达式。上面的代码可以简化为:</p>
+<pre data-source-line="42"><code class="hljs"><span class="hljs-keyword">var splice = <span class="hljs-keyword">func(part1 <span class="hljs-typename">string, part2 <span class="hljs-typename">string) 
+<span class="hljs-typename">string {
+    <span class="hljs-keyword">return part1 + part2
+}</span></span></span></span></span></span></code></pre>
+<p data-source-line="48">&nbsp;&nbsp;在这个示例中，我们直接使用了一个匿名函数来初始化splice变量。顾名思义，匿名函数就是不带名称的函数值。匿名函数直接由函数类型字面量和由花括号包裹的语句列表组成。注意，这里的函数类型字面量中的参数名称是不能被省略的。<br>&nbsp;&nbsp;还可以进一步简化--省去splice变量。例:</p>
+<pre data-source-line="50"><code class="hljs"><span class="hljs-keyword">var <span class="hljs-literal">result = func(part1 <span class="hljs-type">string, part2 <span class="hljs-type">string)
+<span class="hljs-type">string {
+    <span class="hljs-keyword">return part1 + part2
+}(<span class="hljs-string">"1", <span class="hljs-string">"2");</span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="56">&nbsp;&nbsp;函数类型的零值是nil。</p>
+<h1 id="二-结构体和方法" data-source-line="58">二、结构体和方法</h1>
+<p data-source-line="59">&nbsp;&nbsp;Go语言的结构体类型Struct比函数类型更灵活。它可以封装属性和操作。前者即是结构体类型中的字段，而后者则是结构体类型所拥有的方法。<br>&nbsp;&nbsp;结构体类型的字面量由关键字type、类型名称、关键字struct以及花括号包裹的若干字段声明组成，其中，每个字段声明独占一行并由字段名称(可选)和字段类型组成。例:</p>
+<pre data-source-line="61"><code class="hljs"><span class="hljs-typedef"><span class="hljs-keyword">type <span class="hljs-type">Person struct <span class="hljs-container">{
+    <span class="hljs-type">Name string
+    <span class="hljs-type">Gender string
+    <span class="hljs-type">Age uint8
+}</span></span></span></span></span></span></span></code></pre>
+<p data-source-line="68">&nbsp;&nbsp;结构体类型Person中有三个字段，分别是Name、Gender和Age。我们可以用字面量创建出一个该类型的值，像这样:</p>
+<pre data-source-line="69"><code class="hljs"><span class="hljs-tag">Person{<span class="hljs-attribute">Name:<span class="hljs-string">"Robert",<span class="hljs-attribute">Gender:<span class="hljs-string">"Male",<span class="hljs-attribute">Age:<span class="hljs-number">33}</span></span></span></span></span></span></span></code></pre>
+<p data-source-line="72">&nbsp;&nbsp;如果这里键值对的顺序与其类型中的字段声明完全相同的话，可以统一省略所有字段的名称，就像这样:</p>
+<pre data-source-line="73"><code class="hljs">Person{<span class="hljs-string">"Robert", <span class="hljs-string">"Male", <span class="hljs-number">33}</span></span></span></code></pre>
+<p data-source-line="76">&nbsp;&nbsp;我们在编写某个结构体类型的值字面量时可以只对它的部分字段赋值，甚至不对它的任何字段赋值。这时未被显式赋值的字段的值则为其类型的零值。<br>&nbsp;&nbsp;与代表函数值的字面量相似。我们在写一个结构体值的字面量时不需要先拟好其类型。这样的结构体字面量被称为匿名结构体。与匿名函数类似，我们在编写匿名结构体时需要先写明其类型特征(包含字段声明)，再写出它的值初始化部分。我们依照结构体类型Person创建一个匿名结构体:</p>
+<pre data-source-line="78"><code class="hljs">p := <span class="hljs-keyword">struct {
+    Name <span class="hljs-built_in">string
+    Gender <span class="hljs-built_in">string
+    Age uint8
+}{<span class="hljs-string">"Robert", <span class="hljs-string">"Male", <span class="hljs-number">33}</span></span></span></span></span></span></code></pre>
+<p data-source-line="85">&nbsp;&nbsp;匿名结构体最大的用处是在内部临时创建一个结构以封装数据，而不必正式为其声明相关规则。<br>&nbsp;&nbsp;结构体类型可以拥有若干方法(匿名结构体是不可能拥有方法的)。所谓方法，其实就是一种特殊的函数。它可以依附于某个自定义类型。方法的特殊在于它的声明包含了一个接收者声明。这里的接收者指代它所依附的那个类型。以结构体类型Person为例，下面是依附于它的一个名为Grow的方法的声明：</p>
+<pre data-source-line="87"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-params">(person *Person) <span class="hljs-title">Grow<span class="hljs-params">() {
+    person.Age++
+}</span></span></span></span></span></code></pre>
+<p data-source-line="92">&nbsp;&nbsp;如上所示，在关键字func和名称Grow之间的那个圆括号及其包括的内容就是接收者声明。其中的内容由两部分组成。第一部分是代表它所依附的那个类型的值的标识符。第二部分是它依附的那个类型的名称。后者表明了依附关系，而前者则使得在该方法中的代码可以使用到该类型的值(也称为当前值)。代表当前值的那个标识符可被称为接收者标识符，或简称为接收者。例：</p>
+<pre data-source-line="93"><code class="hljs">p := Person{<span class="hljs-string">"Robert", <span class="hljs-string">"Male", <span class="hljs-number">33}
+p.Grow()</span></span></span></code></pre>
+<p data-source-line="97">&nbsp;&nbsp;我们可以直接在Person类型的变量p之上应用调用表达式来调用它的方法Grow。注意，此时方法Grow的接收者标识符person指代的正是变量p的值。这也是“当前值”这个词的由来。在Grow方法中，我们通过使用选择表达式选择了当前值的字段Age。并使其自增。因此，在语句p.Grow()被执行之后，p所代表的那个人就又年长了一岁(p的Age字段的值已变成34)。<br>&nbsp;&nbsp;在Grow方法的接收者声明中的那个类型是*Person，而不是Person。实际上，前者是后者的指针类型。这也使得person指代的是p的指针，而不是它本身。 &nbsp;&nbsp;结构体类型属于值类型。它的零值并不是nil。而是其中字段的值为相应类型的零值的值。结构体类型Person的灵值若用字面量来表示的话是Person{}</p>
+<h1 id="三-接口" data-source-line="100">三、接口</h1>
+<p data-source-line="101">&nbsp;&nbsp;在Go语言中，一个接口类型总是代表着某一种类型(即所有实现它的类型)的行为。一个接口类型的声明通常会包含关键字type、类型名称、关键字interface以及由花括号包裹的若干方法声明。例：</p>
+<pre data-source-line="102"><code class="hljs"><span class="hljs-typedef"><span class="hljs-keyword">type <span class="hljs-type">Animal interface <span class="hljs-container">{
+    <span class="hljs-type">Grow()
+    <span class="hljs-type">Move(string) string
+}</span></span></span></span></span></span></code></pre>
+<p data-source-line="108">&nbsp;&nbsp;接口类型中的方法声明是普通的方法声明的简化形式。它们只包括方法名称、参数声明列表和结果声明列表。其中的参数的名称和结果的名称都可以被省略。未省略应该是这样的:</p>
+<pre data-source-line="109"><code class="hljs">Move<span class="hljs-list">(<span class="hljs-keyword">new string) <span class="hljs-list">(<span class="hljs-keyword">old string)</span></span></span></span></code></pre>
+<p data-source-line="112">&nbsp;&nbsp;如果一个数据类型所拥有的方法集合中包含了某一个接口类型中的所有方法声明的实现，那么就可以说这个数据类型实现了那个接口类型。所谓实现了一个接口中的方法是指，具有与该方法相同的声明并且添加了实现部分(由花括号包裹的若干条语句)。相同的方法声明意味着完全一致的名称、参数类型列表和结果类型列表。其中，参数类型列表即为参数声明列表中除去参数名称的部分。一致的参数类型列表意味着其长度以及顺序的完全相同。对于结果类型列表也是如此。 &nbsp;&nbsp;我们无需在一个数据类型中声明它实现了哪个接口。只要满足了"方法集合为超集"的条件，就建立了“实现”关系。 &nbsp;&nbsp;现在我们已经认为*Person类型实现了Animal接口。但是Go语言编译器是否也这么认为呢？这显然需要一种显式的判定方法。在Go语言中，这种判定可以用类型断言来实现。不过，在这里，我们不能在一个非接口类型的值上应用类型断言来判定它是否属于某一个接口类型。我们必须先把前者转换成空接口类型的值。这就涉及到了Go的类型转换。<br>&nbsp;&nbsp;Go语言的类型转换规则定义了是否能够以及怎样把一个类型的值转换另一个类型的值。另一方面，所谓空接口类型即是不包含任何方法声明的接口类型,用interface{}表示，常简称为空接口。Go中的包含预定义的任何数据类型都可以被看作是空接口的实现。我们可直接使用类型转换表达式把一个*Person类型转换成空接口类型的值，例：</p>
+<pre data-source-line="116"><code class="hljs"><span class="hljs-string">p := Person{<span class="hljs-string">"Robert", <span class="hljs-string">"Male", <span class="hljs-number">33, <span class="hljs-string">"Beijing"}
+<span class="hljs-string">v := <span class="hljs-class"><span class="hljs-keyword">interface{}(&amp;p)</span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="120">&nbsp;&nbsp;在类型字面量后跟由圆括号包裹的值(或能够代表它的变量、常量或表达式)就构成了一个类型转换表达式，意为将后者转换为前者类型的值。在这里，我们把表达式，意为将后者转换为前者类型的值。在这里，我们把表达式&amp;p的求值结果转换成了一个空接口类型的值，并由变量v代表。表达式&amp;p(&amp;是取地址符)的求值结果是一个*Person类型的值，及p的指针。<br>&nbsp;&nbsp;在这之后，我们就可以在v上应用类型断言了，即：</p>
+<pre data-source-line="122"><code class="hljs"><span class="hljs-function_or_atom">h,<span class="hljs-ok">ok := <span class="hljs-function_or_atom">v.(<span class="hljs-variable">Animal)</span></span></span></span></code></pre>
+<p data-source-line="125">&nbsp;&nbsp;类型断言表达式v.(Animal)的求值结果可以有两个。第一个结果是被转换后的那个目标类型(这里是Animal)的值，而第二个结果则是转换操作成功与否的标志。显然，ok代表了一个bool类型的值。它也是这里判定实现关系的重要依据。</p>
+<h1 id="一-指针" data-source-line="1">四、指针</h1>
+<p data-source-line="2">&nbsp;&nbsp;指针操作涉及到两个操作符--&amp;和*。这两个操作符均有多个用途。但是当它们作为地址操作符出现时，&amp;的作用是取址，*的作用是取值。 &nbsp;&nbsp;当*出现在一个类型之前(如*Person和*[3]string)时就不能被看作是操作符了，而应该被视为一个符号。如此组合而成的标识符所表达的含义是作为第二部分的那个类型的指针类型。我们也可以把其中的第二部分所代表的类型称为基底类型。 &nbsp;&nbsp;现在后头看结构体类型Person。它及其两个方法的完整声明如下：</p>
+<pre data-source-line="5"><code class="hljs">type Person strcut {
+    Name    <span class="hljs-built_in">string
+    Gender  <span class="hljs-built_in">string
+    Age     uint8
+    Address <span class="hljs-built_in">string
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-params">(person *Person) <span class="hljs-title">Grow<span class="hljs-params">() {
+    person.Age++
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-params">(person *Person) <span class="hljs-title">Move<span class="hljs-params">(newAddres string) <span class="hljs-title">string {
+    old := person.Address
+    person.Address = newAddress
+    <span class="hljs-keyword">return old
+}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="23">&nbsp;&nbsp;注意，Person的两个方法Grow和Move的接收者类型都是*Person，而不是Person。只要一个方法的接收者类型是其所属类型的指针类型而不是该类型本身，那么就可以称该方法为一个指针方法。上面的Grow方法和Move方法都是Person类型的指针方法。<br>&nbsp;&nbsp;相对的，如果一个方法的接收者类型就是其所属的类型本身。那么我们就可以把它叫做值方法。</p>
+<pre data-source-line="25"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">func <span class="hljs-params">(person Person) <span class="hljs-title">Grow<span class="hljs-params">() {
+    person.Age++
+}</span></span></span></span></span></code></pre>
+<p data-source-line="30">&nbsp;&nbsp;方法的接收者标识符所代表的是该方法当前所属的那个值的一个副本，而不是该值本身。 &nbsp;&nbsp;之所以表达式person.Age成立，是因为如果Go语言发现person是指针并且指向的那个值有Age字段，那么就会把该表达式视为(*person).Age。</p>
+<p data-source-line="30">&nbsp; 拥有指针方法Grow和Move的指针类型*Person是接口类型Animal的实现类型，但是它的基底类型Person却不是。这样的表象隐藏了另一条规则:一个指针类型拥有以它以及以它的基底类型为接收者类型的所有方法，而它的基底类型却至拥有以它本身为接收者类型的方法。</p>
+<p data-source-line="34"><em id="__mceDel">&nbsp;&nbsp;我们在基底类型的值上仍然可以调用它的指针方法。例如，若我们有一个Person类型的变量bp，则调用表达式bp.Grow()是合法的。这是因为，如果Go语言发现我们调用的Grow方法是bp的指针方法，那么它会把调用表达式是为(&amp;bp).Grow()。</em></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/orlion/category/963778.html" target="_blank">Go</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6574366,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/" target="_blank"><img src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/20160331143213.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followers">粉丝 - 30</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6574366,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6574366,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/orlion/p/6538706.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/orlion/p/6538706.html" title="发布于2017-03-12 18:21">Golang 笔记 1 基础、基本数据类型</a><br><a href="http://www.cnblogs.com/orlion/p/6581310.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/orlion/p/6581310.html" title="发布于2017-03-19 18:12">Golang 笔记 3 if、switch、for、select语句</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-03-18 15:36</span> <a href="http://www.cnblogs.com/orlion/">orlion</a> 阅读(<span id="post_view_count">2199</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6574366" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/orlion/p/6574366.html#" onclick="AddToWz(6574366);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=241238,cb_entryId=6574366,cb_blogApp=currentBlogApp,cb_blogUserGuid='8be9122f-2d42-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/3/18 15:36:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/orlion/p/6574366.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/orlion/p/6574366.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://group.cnblogs.com/topic/77995.html" target="_blank">【活动】阿里云双11活动开始预热 云服务器限时2折起</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="https://cloud.tencent.com/act/free?fromSource=gwzcw.562633.562633.562633" target="_blank">【推荐】腾讯云 普惠云计算 0门槛体验</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://activity.huaweicloud.com/Octoberactivity/index.html?utm_source=cnblogs&amp;utm_medium=MediaB&amp;utm_campaign=%E5%8D%8E%E4%B8%BA%E4%BA%91-10%E6%9C%88%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE&amp;utm_content=%E5%8D%9A%E5%AE%A2%E5%9B%AD%E5%86%85%E9%A1%B5C1%E7%9F%A9%E5%BD%A2&amp;utm_term=%E5%8F%8C11%E4%BF%83%E9%94%80%E6%B4%BB%E5%8A%A8" target="_blank"><img width="300" height="250" src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/24442-20171029145139367-1787068412.jpg" alt="华为云C2-1030"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/581482/" target="_blank">李连杰讲述《功守道》拍摄始末：马云这个青年演员很敬业</a><br> ·  <a href="http://news.cnblogs.com/n/581480/" target="_blank">别了！华为！</a><br> ·  <a href="http://news.cnblogs.com/n/581478/" target="_blank">微软发布Surface Pro LTE：支持全球4G 比Wi-Fi版贵150美元</a><br> ·  <a href="http://news.cnblogs.com/n/581476/" target="_blank">员工薪水不满意排行榜 微软和苹果公司排名靠前</a><br> ·  <a href="http://news.cnblogs.com/n/581479/" target="_blank">IBM在超算上模拟56量子比特量子计算机</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/32986/" target="_blank"><img width="468" height="60" src="./Golang 笔记 2 函数、结构体、接口、指针 - orlion - 博客园_files/24442-20171027070203758-1397753435.jpg" alt="阿里云双11"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/578502/" target="_blank">为什么你参加了那么多培训，却依然表现平平？</a><br> ·  <a href="http://kb.cnblogs.com/page/579832/" target="_blank">写给初学前端工程师的一封信</a><br> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"><b>历史上的今天:</b><br>2016-03-18 <a href="http://www.cnblogs.com/orlion/p/5291784.html">PHP扩展开发入门</a><br></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>园龄：<a href="http://home.cnblogs.com/u/orlion/" title="入园时间：2015-08-14">2年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/orlion/followers/">30</a><br>关注：<a href="http://home.cnblogs.com/u/orlion/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/orlion/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/orlion/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/orlion/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/orlion/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/orlion/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/orlion/p/6574366.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/orlion/category/805102.html">Android(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/orlion/category/805103.html">Apache(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/orlion/category/805104.html">C/C++(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/orlion/category/963778.html">Go(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/orlion/category/765712.html">Hibernate(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/orlion/category/726626.html">JAVA SE(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/orlion/category/738143.html">JAVA Web(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/orlion/category/805106.html">js(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/orlion/category/726627.html">linux(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/orlion/category/805107.html">Linux系统编程(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/orlion/category/837776.html">Minor(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/orlion/category/787371.html">mongodb(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/orlion/category/726625.html">PHP(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/orlion/category/801896.html">PHP扩展开发(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/orlion/category/726624.html">Python(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/orlion/category/788233.html">redis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/orlion/category/805109.html">Spring(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/orlion/category/762333.html">Struts2(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/orlion/category/731095.html">Symfony(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/orlion/category/830086.html">编译原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/orlion/category/764911.html">程序运行原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/orlion/category/805111.html">汇编(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/orlion/category/726629.html">设计模式(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/orlion/category/781995.html">深入理解PHP内核(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/orlion/category/810101.html">数据结构(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/orlion/category/733672.html">数据库(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/orlion/category/732203.html">算法(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/orlion/archive/2017/07.html">2017年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/orlion/archive/2017/06.html">2017年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/orlion/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/orlion/archive/2017/03.html">2017年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/orlion/archive/2017/02.html">2017年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/orlion/archive/2017/01.html">2017年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/orlion/archive/2016/12.html">2016年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/orlion/archive/2016/11.html">2016年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/orlion/archive/2016/09.html">2016年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/orlion/archive/2016/08.html">2016年8月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/orlion/archive/2016/06.html">2016年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/orlion/archive/2016/05.html">2016年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/orlion/archive/2016/04.html">2016年4月 (77)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/orlion/archive/2016/03.html">2016年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/orlion/archive/2016/02.html">2016年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/orlion/archive/2016/01.html">2016年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/orlion/archive/2015/12.html">2015年12月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/orlion/archive/2015/11.html">2015年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/orlion/archive/2015/10.html">2015年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/orlion/archive/2015/09.html">2015年9月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/orlion/archive/2015/08.html">2015年8月 (5)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://github.com/Orlion" rel="nofollow">Github</a> </li>
+<li class="c_b_p_link_desc">Orlion's Github</li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3791399">1. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">@Reidkm电子书已经找不到了，我建议你读一下《深入理解计算机系统》这本书...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3778970">2. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">帮助很大！</li>
+        <li class="recent_comment_author">--扯动脑神经</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3777314">3. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">楼主你好 请问上述内容是 电子书里的吗？ 能给个全部内容的链接吗？<br>谢谢了</li>
+        <li class="recent_comment_author">--Reidkm</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3625374">4. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">@cotyb多谢指正...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/6399325.html#3623923">5. Re:[APUE]进程控制(下)</a></li>
+        <li class="recent_comment_body">Linux相关技术交流，欢迎来我的博客留言交流哈！</li>
+        <li class="recent_comment_author">--枫爷</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">1. x86汇编程序基础(AT&amp;T语法)(6121)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4901311.html">2. java线程四种状态(5054)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5282753.html">3. php的几种运行模式CLI、CGI、FastCGI、mod_php(4618)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4980641.html">4. PHP变量在内存中的存储方式(3890)</a></li><li><a href="http://www.cnblogs.com/orlion/p/6574366.html">5. Golang 笔记 2 函数、结构体、接口、指针(2200)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">1. Minor【 PHP框架】1.简介(4)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">2. x86汇编程序基础(AT&amp;T语法)(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5813317.html">3. [汇编与C语言关系]2. main函数与启动例程(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5058441.html">4. 程序是如何执行的（一）a=a+1(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4750303.html">5. python第一天 - dict(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5350663.html">1. Android入门(九)文件存储与SharedPreferences存储(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">2. Minor【 PHP框架】1.简介(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5500258.html">3. [转]浏览器退出之后php还会继续执行么？(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5459053.html">4. 用扩展开发一个PHP类(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/7157909.html">5. 语法的二义性和token的超前扫描(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+		<div id="footer">
+			
+<!--done-->
+Copyright ©2017 orlion
+		</div><!--end: footer -->
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+</center>
+
+
+</body></html>

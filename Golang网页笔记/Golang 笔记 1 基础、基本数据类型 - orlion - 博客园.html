@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/orlion/p/6538706.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golang 笔记 1 基础、基本数据类型 - orlion - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/bundle-LoveIsIntheAir.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/bundle-LoveIsIntheAir-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/orlion/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/orlion/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/orlion/wlwmanifest.xml">
+<script async="" src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/analytics.js"></script><script src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'orlion', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/orlion/"><img id="blogLogo" src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/orlion/">Orlion</a></h1>
+<h2>github.com/orlion</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/orlion/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/orlion">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/orlion/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/orlion/rss"><img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 231&nbsp;
+文章- 0&nbsp;
+评论- 21&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/orlion/p/6538706.html">Golang 笔记 1 基础、基本数据类型</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1 id="一-go语言基础" data-source-line="1">一、Go语言基础</h1>
+<h3 id="1-基础" data-source-line="2">1. 基础</h3>
+<p data-source-line="3">Go语言中的标识符必须以字母(Unicode字母，PHP/JS可以用中文作为变量名)下划线开头。大写字母跟小写字母是不同的:Hello和hello是两个不同的名字。<br>&nbsp;&nbsp;Go中有25个关键字:</p>
+<pre data-source-line="5"><code class="hljs"><span class="hljs-keyword">break    <span class="hljs-keyword">default     <span class="hljs-keyword">func   <span class="hljs-keyword">interface <span class="hljs-keyword">select
+<span class="hljs-keyword">case     <span class="hljs-keyword">defer       <span class="hljs-keyword">go     <span class="hljs-keyword">map       <span class="hljs-keyword">struct
+<span class="hljs-keyword">chan     <span class="hljs-keyword">else        <span class="hljs-keyword">goto   <span class="hljs-keyword">package   <span class="hljs-keyword">switch
+<span class="hljs-keyword">const    <span class="hljs-keyword">fallthrough <span class="hljs-keyword">if     <span class="hljs-keyword">range     <span class="hljs-keyword">type
+<span class="hljs-keyword">continue <span class="hljs-keyword">for         <span class="hljs-keyword">import <span class="hljs-keyword">return    <span class="hljs-keyword">var</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="12">&nbsp;&nbsp;如果一个名字是在函数内容定义，那么它的作用域就在函数内容，如果在函数外部定义，那么将在当前包的所有文件中都可以访问。名字的开头字母的大小写决定了名字在包外的可见性。如果一个名字是大写字母开头，那么它可以被外部的包访问，例如fmt包的Printf函数。</p>
+<h3 id="2-注释" data-source-line="14">2. 注释</h3>
+<ul data-source-line="15">
+<li>单行注释 // ...</li>
+<li>多行注释 /* ... */</li>
+</ul>
+<h3 id="3-go程序的一般结构" data-source-line="18">3. Go程序的一般结构</h3>
+<ul data-source-line="19">
+<li>Go程序是通过package来组织的</li>
+<li>只有package名称为main的包可以包含main函数</li>
+<li>一个可执行程序有且只有一个main包</li>
+</ul>
+<pre data-source-line="22"><code class="hljs"><span class="hljs-comment">// 当前程序的包名
+<span class="hljs-keyword">package main
+<span class="hljs-comment">// 导入其他的包
+<span class="hljs-keyword">import <span class="hljs-string">"fmt"
+<span class="hljs-comment">// 一次导入多个包
+<span class="hljs-keyword">import (
+    <span class="hljs-string">"io"
+    <span class="hljs-string">"os"
+)
+<span class="hljs-comment">// 常量的定义
+<span class="hljs-keyword">const PI = <span class="hljs-number">3.14
+<span class="hljs-comment">// 全局变量的声明与赋值，该变量在整个package中使用
+<span class="hljs-keyword">var name = <span class="hljs-string">"go"
+<span class="hljs-comment">// 一般类型声明
+<span class="hljs-keyword">type newType <span class="hljs-typename">int
+<span class="hljs-comment">// 结构的声明
+<span class="hljs-keyword">type <span class="hljs-keyword">go <span class="hljs-keyword">struct{}
+<span class="hljs-comment">// 接口的声明
+<span class="hljs-keyword">type golang <span class="hljs-keyword">interface{}
+<span class="hljs-comment">// 由main函数作为程序入口启动
+<span class="hljs-keyword">func main() {
+    fmt.Println(<span class="hljs-string">"Hello World!")
+}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<ul data-source-line="47">
+<li>如果导入的包但是没有用到类型或者函数则会报编译错误</li>
+<li>package别名： import io "fmt" 这样将fmt设置一个别名为io,调用的时候就可以这样: io.Println("...")</li>
+</ul>
+<h3 id="4-可见性规则" data-source-line="50">4. 可见性规则</h3>
+<p data-source-line="51">&nbsp;&nbsp;Go语言中使用大小写来决定该常量、变量、类型、接口、结构或函数是否可以被外部包所调用: 根据约定，函数名首字母小写即为private（外部不可以调用），大写为public</p>
+<h1 id="二-基本数据类型" data-source-line="52">二、基本数据类型</h1>
+<h3 id="1-变量和常量" data-source-line="53">1、变量和常量</h3>
+<ul data-source-line="54">
+<li>普通赋值:</li>
+</ul>
+<pre data-source-line="55"><code class="hljs"><span class="hljs-comment">// var 变量名称 变量类型 = 值
+<span class="hljs-keyword">var <span class="hljs-built_in">num <span class="hljs-built_in">int = <span class="hljs-number">1</span></span></span></span></span></code></pre>
+<ul data-source-line="59">
+<li>平行赋值</li>
+</ul>
+<pre data-source-line="60"><code class="hljs">var num1,num2 <span class="hljs-keyword">int = <span class="hljs-number">1, <span class="hljs-number">2</span></span></span></code></pre>
+<ul data-source-line="63">
+<li>多行赋值</li>
+</ul>
+<pre data-source-line="64"><code class="hljs">var (
+    num1 <span class="hljs-keyword">int = <span class="hljs-number">1
+    num2 <span class="hljs-keyword">int = <span class="hljs-number">2
+)</span></span></span></span></code></pre>
+<h3 id="2-整数类型的命名和宽度" data-source-line="70">2、整数类型的命名和宽度</h3>
+<p data-source-line="71">&nbsp;&nbsp;Go的整数类型一共有10个<br>&nbsp;&nbsp;其中计算架构相关的整数类型有两个: 有符号的整数类型 int, 无符号的整数类型 uint。<br>&nbsp;&nbsp;在不同计算架构的计算机上，它们体现的宽度(存储某个类型的值所需要的空间)是不一样的。空间的单位可以是bit也可以是字节byte。<br>&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170312181714857-165152327.png" alt="" style="width: 733px;"></p>
+<p data-source-line="71">&nbsp;&nbsp;除了这两个计算架构相关的整数类型之外，还有8个可以显式表达自身宽度的整数类型:<br>&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170312181736357-1843824288.png" alt=""></p>
+<h3 id="3-整数类型值的表示法" data-source-line="77">3、整数类型值的表示法</h3>
+<p data-source-line="78">&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170312181809686-170726689.png" alt="" style="width: 733px;"></p>
+<p data-source-line="78">&nbsp;&nbsp;如果以8进制为变量num赋值:</p>
+<pre data-source-line="80"><code class="hljs">num = <span class="hljs-number">039 <span class="hljs-comment">// 用"0"作为前缀以表明这是8进制表示法</span></span></code></pre>
+<p data-source-line="83">&nbsp;&nbsp;如果以16进制为变量num赋值:</p>
+<pre data-source-line="84"><code class="hljs">num = <span class="hljs-number">0x39</span></code></pre>
+<h3 id="4-浮点数类型" data-source-line="87">4、浮点数类型</h3>
+<p data-source-line="88">&nbsp;&nbsp;浮点数类型有两个：float32/float64 &nbsp;&nbsp;浮点数类型的值一般由整数部分、小数点"."和小数部分组成。另外一种表示方法是在其中加入指数部分。指数部分由"E"或"e"以及带正负号的10进制整数表示。例:3.9E-2表示浮点数0.039。3.9E+1表示浮点数39。<br>&nbsp;&nbsp;有时候浮点数类型值也可以被简化。比如39.0可以被简化为39。0.039可以被简化为.039。 &nbsp;&nbsp;在Go中浮点数的相关部分只能由10进制表示法表示。</p>
+<h3 id="5-复数类型" data-source-line="92">5、复数类型</h3>
+<p data-source-line="93">&nbsp;&nbsp;复数类型有两个:complex64和complex128。实际上，complex64类型的值会由两个float32类型的值分别表示复数的实数部分和虚数部分。而complex128类型的值会由两个float64类型的值表示复数的实数部分和虚数部分。<br>&nbsp;&nbsp;负数类型的值一般由浮点数表示的实数部分、加号"+"、浮点数表示的虚数部分以及小写字母"i"组成，比如3.9E+1 + 9.99E-2i。</p>
+<h3 id="6-byte与rune" data-source-line="95">6、byte与rune</h3>
+<p data-source-line="96">&nbsp;&nbsp;byte与rune都属于别名类型。byte是uint8的别名类型，而rune是int32的别名类型。<br>&nbsp;&nbsp;一个rune的类型值即可表示一个Unicode字符。一个Unicode代码点通常由"U+"和一个以十六进制表示法表示的整数表示，例如英文字母'A'的Unicode代码点为"U+0041"。<br>&nbsp;&nbsp;rune类型的值需要由单引号"'"包裹，不过我们还可以用另外几种方式表示:&nbsp;</p>
+<p data-source-line="96">&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170319181258807-380888326.png" alt=""></p>
+<p data-source-line="96">&nbsp; 另外在rune类型值的表示中支持几种特殊的字符序列，即:转义符。如下图:&nbsp;</p>
+<p data-source-line="96">&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170319181326729-1059684011.png" alt=""></p>
+<h3 id="7-字符串类型" data-source-line="102">7、字符串类型</h3>
+<p data-source-line="103">&nbsp;&nbsp;字符串的表示法有两种，即：原生表示法和解释型表示法。原生表示法，需用用反引号"`"把字符序列包起来，如果用解释型表示法，则需要用双引号"""包裹字符序列。</p>
+<pre data-source-line="104"><code class="hljs"><span class="hljs-keyword">var str1 <span class="hljs-typename">string = <span class="hljs-string">"str"
+<span class="hljs-keyword">var str1 <span class="hljs-typename">string = <span class="hljs-string">`str`</span></span></span></span></span></span></code></pre>
+<p data-source-line="108">&nbsp;&nbsp;二者的区别是，前者表示的是所见即所得的(除了回车符)。后者所表示的值中转义符会起作用。字符串值是不可变的，如果我们创建了一个此类型的值，就不可能再对它本身做任何修改。</p>
+<h1 id="三-高级数据类型" data-source-line="110">三、高级数据类型</h1>
+<h3 id="1-数组类型" data-source-line="111">1、数组类型</h3>
+<p data-source-line="112">&nbsp;&nbsp;一个数组是可以容纳若干相同类型的元素的容器。数组的长度是固定的。如下声明一个数组类型:</p>
+<pre data-source-line="113"><code class="hljs">type MyNumbers [<span class="hljs-number">3]<span class="hljs-keyword">int</span></span></code></pre>
+<blockquote data-source-line="116">
+<p>类型声明语句由关键字type、类型名称和类型字面量组成</p>
+</blockquote>
+<p data-source-line="118">&nbsp;&nbsp;上面这条类型声明语句实际上是为数组类型[3]int声明了一个别名类型。这使得我们可以把MyNumbers当作数组类型[3]int来使用。<br>&nbsp;&nbsp;我们表示这样一个数组类型的值的时候。应该把该类型的类型字面量写在最左边，然后用花括号包裹该值包含的若干元素，各元素之间以(英文半角)逗号分割，即:</p>
+<pre data-source-line="120"><code class="hljs">[<span class="hljs-number">3]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3}</span></span></span></span></span></code></pre>
+<p data-source-line="123">&nbsp;&nbsp;现在我们把这个数组字面量赋给一个名为numbers的变量:</p>
+<pre data-source-line="124"><code class="hljs">var numbers = [<span class="hljs-number">3]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3}</span></span></span></span></span></code></pre>
+<blockquote data-source-line="127">
+<p>这是一条变量声明语句，它在声明变量的同时为该变量赋值</p>
+</blockquote>
+<p data-source-line="129">&nbsp;&nbsp;另一种方式是在其中的类型字面量中省略代表其长度的数组，例：</p>
+<pre data-source-line="130"><code class="hljs">var numbers = [...]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3}</span></span></span></span></code></pre>
+<p data-source-line="133">&nbsp;&nbsp;可以用如下方式访问该变量中的任何一个元素。例:</p>
+<pre data-source-line="134"><code class="hljs">numbers<span class="hljs-string">[0]
+numbers<span class="hljs-string">[1]
+numbers<span class="hljs-string">[2]</span></span></span></code></pre>
+<p data-source-line="139">&nbsp;&nbsp;如果要修改数组值中的某一个元素值，可以：</p>
+<pre data-source-line="140"><code class="hljs">numbers[<span class="hljs-number">1] = <span class="hljs-number">4</span></span></code></pre>
+<p data-source-line="143">&nbsp;&nbsp;可以用如下方式获取数组长度:</p>
+<pre data-source-line="144"><code class="hljs"><span class="hljs-tag">var length = <span class="hljs-function"><span class="hljs-title">len<span class="hljs-params">(numbers)</span></span></span></span></code></pre>
+<p data-source-line="147">&nbsp;&nbsp;如果一个数组没有赋值，则它的默认值为[length]type{0,0,0...}</p>
+<h3 id="2-切片类型" data-source-line="148">2、切片类型</h3>
+<h6 id="1-基础-2" data-source-line="149">(1) 基础</h6>
+<p data-source-line="150">&nbsp;&nbsp;切片(slice)与数组一样也是可以若干相同类型元素的容器。与数组不同的是切片类型的长度不确定。每个切片值都会将数组作为其底层数据结构。表示切片类型的字面量如:</p>
+<pre data-source-line="151"><code class="hljs"><span class="hljs-literal">[]<span class="hljs-built_in">int</span></span></code></pre>
+<p data-source-line="154">或者是:</p>
+<pre data-source-line="155"><code class="hljs"><span class="hljs-literal">[]<span class="hljs-built_in">string</span></span></code></pre>
+<p data-source-line="158">&nbsp;&nbsp;切片类型的声明可以这样:</p>
+<pre data-source-line="159"><code class="hljs"><span class="hljs-keyword">type <span class="hljs-type">MySlice <span class="hljs-literal">[]<span class="hljs-built_in">int</span></span></span></span></code></pre>
+<p data-source-line="162">&nbsp;&nbsp;对切片值的表示也与数组值相似</p>
+<pre data-source-line="163"><code class="hljs">[]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3}</span></span></span></span></code></pre>
+<p data-source-line="166">&nbsp;&nbsp;操作数组值的方法同样适用于切片值。还有一种操作数组的方式叫做“切片”，实施切片操作的方式就是切片表达式。例:</p>
+<pre data-source-line="167"><code class="hljs">var number3 = [<span class="hljs-number">5]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3,<span class="hljs-number">4,<span class="hljs-number">5}
+var slice1 = numbers3[<span class="hljs-number">1:<span class="hljs-number">4]</span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="171">&nbsp;&nbsp;上例中切片表达式numbers3[1:4]的结果为[]int{2,3,4}很明显被切下的部分不包含元素上界索引指向的元素。实际上slice1这个切片值的底层数组正是number3的值。<br>&nbsp;&nbsp;我们也可以在切片值上实施切片操作：</p>
+<pre data-source-line="173"><code class="hljs">var slice2 = slice1[<span class="hljs-number">1:<span class="hljs-number">3]</span></span></code></pre>
+<p data-source-line="176">&nbsp;&nbsp;除了长度切片值以及数组值还有另外一个属性--容量。数组的容量总是等于其长度，而切片值的容量往往与其长度不同。如下图:&nbsp;</p>
+<p data-source-line="176">&nbsp;&nbsp;<img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/798267-20170319181416995-1480939339.png" alt=""></p>
+<p data-source-line="176">&nbsp;&nbsp;如图所示，一个切片值的容量即为它的第一个元素值在其底层数组中的索引值与该数组长度的差值的绝对值。可以使用cap()内建函数获取数组、切片、通道类型的值的容量:</p>
+<pre data-source-line="179"><code class="hljs"><span class="hljs-tag">var capacity2 int = <span class="hljs-function"><span class="hljs-title">cap<span class="hljs-params">(slice2)</span></span></span></span></code></pre>
+<p data-source-line="182">&nbsp;&nbsp;切片类型属于引用类型，它的零值即为nil，即空值。如果我们只声明了一个切片类型而不为它赋值，则它的默认值:nil。</p>
+<h6 id="2-切片的更多操作方法" data-source-line="183">(2) 切片的更多操作方法</h6>
+<p data-source-line="184">&nbsp;&nbsp;有些时候我们可以在方括号中放入第三个正整数。如下图所示:</p>
+<pre data-source-line="185"><code class="hljs">numbers3[<span class="hljs-number">1:<span class="hljs-number">4:<span class="hljs-number">4]</span></span></span></code></pre>
+<p data-source-line="188">&nbsp;&nbsp;第三个正整数为容量上界索引，它意义在于可以把作为结果的切片值的容量设置的更小。它可以限制我们通过这个切片值对其底层数组中的更多元素的访问。上节中numbers3和slice的赋值语句如下:</p>
+<pre data-source-line="189"><code class="hljs">var numbers3 = [<span class="hljs-number">5]<span class="hljs-keyword">int{<span class="hljs-number">1,<span class="hljs-number">2,<span class="hljs-number">3,<span class="hljs-number">4,<span class="hljs-number">5}
+var slice1 = numbers3[<span class="hljs-number">1:<span class="hljs-number">4]</span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="193">&nbsp;&nbsp;这时，变量slice1的值是[]int{2,3,4}。但是我们可以通过如下操作将其长度延展与其容量相同:</p>
+<pre data-source-line="194"><code class="hljs">slice1 = slice1[:<span class="hljs-function"><span class="hljs-title">cap<span class="hljs-params">(slice1)]</span></span></span></code></pre>
+<p data-source-line="197">&nbsp;&nbsp;通过此操作，变量slice1的值变为了[]int{2,3,4,5}，且其长度和容量均为4。现在number3的值中的索引值在(1,5)范围内的元素都被体现在了slice1的值中。这是以number3的值是slice1的值的底层数组为前提的。这意味着我们可以轻而易举地通过切片访问其底层数组中对应索引值更大的更多元素。如果我们编写的函数返回了这样一个切片值，那么得到它的程序很可能会通过这种技巧访问到本不应该暴露给它的元素。<br>&nbsp;&nbsp;如果我们在切片中加入了第三个索引(即容量上限索引)，如：</p>
+<pre data-source-line="199"><code class="hljs">var slice1 = numbers3[<span class="hljs-number">1:<span class="hljs-number">4:<span class="hljs-number">4]</span></span></span></code></pre>
+<p data-source-line="202">&nbsp;&nbsp;那么在此之后，我们将无法通过slice1访问到number3的值中的第五个元素。<br>&nbsp;&nbsp;虽然切片值在上述方面受到了其容量的限制。但是我们可以通过另外一种手段对其进行不受限制的扩展。这需要用到内建函数append。append会对切片值进行扩展并返回一个新的切片值，使用方法如下:</p>
+<pre data-source-line="204"><code class="hljs">slice1 = <span class="hljs-function"><span class="hljs-title">append<span class="hljs-params">(slice1, <span class="hljs-number">6, <span class="hljs-number">7)</span></span></span></span></span></code></pre>
+<p data-source-line="207">&nbsp;&nbsp;通过上述操作，slice1的值变为了[]int{2,3,4,6,7}。一旦扩展操作超出了被操作的切片值的容量，那么该切片的底层数组就会被替换&nbsp;&nbsp;&nbsp;最后一种操作切片的方式是“复制”。该操作的实施方法是调用copy函数。该函数接收两个类型相同的切片值作为参数，并把第二个参数值中的元素复制到第一个参数值中的相应位置(索引值相同)上。这里有两点需要注意:</p>
+<ol data-source-line="209">
+<li>这种复制遵循最小复制原则，即：被复制的元素的个数总是等于长度较短的那个参值的长度。</li>
+<li>与append函数不同，copy函数会直接对其第一个参数值进行修改。</li>
+</ol>
+<p data-source-line="212">&nbsp;&nbsp;例:</p>
+<pre data-source-line="213"><code class="hljs">var slice4 = []<span class="hljs-keyword">int{<span class="hljs-number">0,<span class="hljs-number">0,<span class="hljs-number">0,<span class="hljs-number">0,<span class="hljs-number">0,<span class="hljs-number">0}
+copy(slice4, slice1)</span></span></span></span></span></span></span></code></pre>
+<p data-source-line="217">&nbsp;通过上述复制操作，slice4会变成[]int{2,3,4,6,7,0,0}。</p>
+<h3 id="1-字典类型" data-source-line="2">3、字典类型</h3>
+<p data-source-line="3">&nbsp;&nbsp;Go语言的字典(Map)类型是一个哈希表的实现。字典类型的字面量如下:</p>
+<pre data-source-line="4"><code class="hljs">map<span class="hljs-string">[K]T</span></code></pre>
+<p data-source-line="7">&nbsp;&nbsp;其中，"K"为键的类型，而"T"则代表元素(值)的类型。如果我们描述一个键类型为int，值类型为string的字典类型的话：</p>
+<pre data-source-line="8"><code class="hljs"><span class="hljs-built_in">map[<span class="hljs-keyword">int]<span class="hljs-built_in">string</span></span></span></code></pre>
+<blockquote data-source-line="11">
+<p>字典的键类型必须是可比较的，否则会引起错误，即键不能是切片、字典、函数类型</p>
+</blockquote>
+<p data-source-line="13">&nbsp;&nbsp;字典值的字面量表示法实际上与数组的切片的字面量表示法很相似。最左边仍然是类型字面量，右边紧挨着由花括号包裹且有英文逗号分隔的键值对。每个键值对的键和值之间由冒号分隔。以字典类型map[int]string为例。他的值的字面量可以是这样的：</p>
+<pre data-source-line="14"><code class="hljs"><span class="hljs-built_in">map[<span class="hljs-keyword">int]<span class="hljs-built_in">string{<span class="hljs-number">1:<span class="hljs-string">"a",<span class="hljs-number">2:<span class="hljs-string">"b"m,<span class="hljs-number">3:<span class="hljs-string">"c"}</span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="17">&nbsp;&nbsp;我们可以把这个值赋给一个变量</p>
+<pre data-source-line="18"><code class="hljs">mm := <span class="hljs-built_in">map[<span class="hljs-keyword">int]<span class="hljs-built_in">string{<span class="hljs-number">1:<span class="hljs-string">"a",<span class="hljs-number">2:<span class="hljs-string">"b",<span class="hljs-number">3:<span class="hljs-string">"c"}</span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="21">&nbsp;&nbsp;可用索引表达式取出字典中的值：</p>
+<pre data-source-line="22"><code class="hljs"><span class="hljs-tag">b := mm[<span class="hljs-number">2]</span></span></code></pre>
+<p data-source-line="25">&nbsp;&nbsp;可以用索引表达式赋值:</p>
+<pre data-source-line="26"><code class="hljs">mm[<span class="hljs-number">2] = <span class="hljs-tag">b + <span class="hljs-string">"2"</span></span></span></code></pre>
+<p data-source-line="29">&nbsp;&nbsp;这样mm中键为2的值变为了"b2"。可以用如下方式向字典中添加一个键值对:</p>
+<pre data-source-line="30"><code class="hljs">mm<span class="hljs-string">[4] = <span class="hljs-string">""</span></span></code></pre>
+<p data-source-line="33">&nbsp;&nbsp;对于字典值来说，如果指定键没有对应的值则默认为该类型的空值。所以mm[5]会返回一个""。但是这样的话我们就不知道mm[5]到底是""还是mm[5]没有这个值。所以go提供了另外一种写法:</p>
+<pre data-source-line="34"><code class="hljs">e, ok := mm<span class="hljs-string">[5]</span></code></pre>
+<p data-source-line="37">&nbsp;&nbsp;针对字典的索引表达式可以有两个求职结果，第二个求职结果是bool类型的。它用于表明字典值中是否存在指定的键值对。 &nbsp;&nbsp;从字典中删除键值对的方法非常简单，仅仅是调用内建函数delete：</p>
+<pre data-source-line="39"><code class="hljs"><span class="hljs-function"><span class="hljs-title">delete<span class="hljs-params">(mm, <span class="hljs-number">4)</span></span></span></span></code></pre>
+<p data-source-line="42">&nbsp;&nbsp;无论mm中是否存在以4为键的键值对，delete都删除。 &nbsp;&nbsp;字典类型属于引用类型，它的零值即为nil</p>
+<h3 id="2-通道类型" data-source-line="44">4、通道类型</h3>
+<p data-source-line="45">&nbsp;&nbsp;通道(Channel)是Go语言中一种非常独特的数据结构。它可用于在不同Goroutine之间传递类型化的数据。并且是并发安全的。相比之下，之前几种数据类型都不是并发安全的。<br>&nbsp;&nbsp;Goroutine可以被看作是承载可被并发执行的代码块的载体。它们由Go语言的运行时系统调度，并依托操作系统线程(又称内核线程)来并发地执行其中的代码块。<br>&nbsp;&nbsp;通道类型的表示方法很简单，仅由两部分组成:</p>
+<pre data-source-line="48"><code class="hljs"><span class="hljs-keyword">chan T</span></code></pre>
+<p data-source-line="51">&nbsp;&nbsp;在这个类型字面量中，左边是代表通道类型的关键字chan,而右边则是一个可变的部分，即代表该通道类型允许传递的数据的类型(或称通道的元素类型)。<br>&nbsp;&nbsp;与其他的数据类型不同，我们无法表示一个通道类型的值，因此，我们无法用字面量来为通道类型的变量赋值。只能通过调用内建函数make来达到目的。make参数可接受两个参数，第一个参数是代表了将被初始化的值的类型的字面量(例: chan int),而第二个参数则是值的长度，例如,若我们想要初始化一个长度为5且元素类型为int的通道值，则需要这样写:</p>
+<pre data-source-line="53"><code class="hljs"><span class="hljs-built_in">make(<span class="hljs-keyword">chan <span class="hljs-typename">int, <span class="hljs-number">5)</span></span></span></span></code></pre>
+<p data-source-line="56">&nbsp;&nbsp;make函数也可以被用来初始化切片类型或字典类型的值。<br>&nbsp;&nbsp;暂存在通道值中的数据是先进先出。下面，我们声明一个通道类型的变量，并为其赋值:</p>
+<pre data-source-line="58"><code class="hljs">ch1 := <span class="hljs-built_in">make(<span class="hljs-keyword">chan <span class="hljs-typename">string, <span class="hljs-number">5)</span></span></span></span></code></pre>
+<p data-source-line="61">&nbsp;&nbsp;这样一来，我们就可以使用接受操作符&lt;-向通道值发送数据了。当然，也可以使用它从通道值接收数据，例如，如果我们要向通道ch1 发送字符串"value1"，那么应该这样做:</p>
+<pre data-source-line="62"><code class="hljs"><span class="hljs-title">ch1 &lt;- <span class="hljs-string">"value1"</span></span></code></pre>
+<p data-source-line="65">&nbsp;&nbsp;如果我们从ch1那里接收字符串，则要这样:</p>
+<pre data-source-line="66"><code class="hljs">&lt;- ch1</code></pre>
+<p data-source-line="69">&nbsp;&nbsp;我们可以把接受到字符串赋给一个变量，如:</p>
+<pre data-source-line="70"><code class="hljs"><span class="hljs-keyword">value := &lt;- ch<span class="hljs-number">1</span></span></code></pre>
+<p data-source-line="73">&nbsp;&nbsp;与针对字典值的索引表达式一样，针对通道值的接受操作也可以有第二个结果值:</p>
+<pre data-source-line="74"><code class="hljs"><span class="hljs-keyword">value, ok := &lt;- ch<span class="hljs-number">1</span></span></code></pre>
+<p data-source-line="77">&nbsp;&nbsp;这里的ok的值是bool类型的。它代表了通道值的状态，true代表通道值有效，而false则代表通道值已无效(或称已关闭)，更深层次的原因是，如果在接受操作进行之前或过程中通道值被关闭了，则接收操作会立即结束并返回一个该通道值的元素类型的零值。<br>&nbsp;&nbsp;可以通过函数close来关闭通道:</p>
+<pre data-source-line="79"><code class="hljs"><span class="hljs-function"><span class="hljs-title">close<span class="hljs-params">(ch1)</span></span></span></code></pre>
+<p data-source-line="82">&nbsp;&nbsp;对通道值的重复关闭会引发运行时异常，会使程序崩溃。在通道值有效的前提下，针对它的发送操作会在通道值已满(其中缓存的数据的个数已等于它的长度)时被阻塞。而向一个已被关闭的通道值发送数据会引发运行时异常。针对有效通道值的接收操作会在它已经为空时被阻塞。通道类型属于引用类型，它的零值为nil。</p>
+<h3 id="3-通道的更多种类" data-source-line="83">5、通道的更多种类</h3>
+<p data-source-line="84">&nbsp;&nbsp;上一节中的通道实际上只是Go中的通道的一种。是带缓冲的通道，或者简称为缓冲通道。<br>&nbsp;&nbsp;通道有缓冲和非缓冲之分，缓冲通道中可以缓存N个数据，我们在初始化一个通道值的时候必须指定这个N，**相对的非缓冲通道不会缓存任何数据，发送方在向通道发送数据的时候会立即被阻塞。直到有一个接收方已从该通道中接收了这条数据。**非缓冲的通道值的初始化方法如下:</p>
+<pre data-source-line="86"><code class="hljs"><span class="hljs-built_in">make(<span class="hljs-keyword">chan <span class="hljs-typename">int, <span class="hljs-number">0)</span></span></span></span></code></pre>
+<p data-source-line="89">&nbsp;&nbsp;除了上述分类方法，我们还可以以数据在通道中的传输方向为依据来划分通道。默认情况下，通道都是双向的，即双向通信。如果数据只能在通道中单向传输，那么该通道被称作单向通道。我们在初始化一个通道值的时候不能指定为单向。但是在编写类型声明的时候可以:</p>
+<pre data-source-line="90"><code class="hljs"><span class="hljs-keyword">type Receiver &lt;- <span class="hljs-keyword">chan <span class="hljs-typename">int</span></span></span></code></pre>
+<p data-source-line="93">&nbsp;&nbsp;类型Receiver代表了一个只从中接收数据的单向通道类型，这样的通道也被称为接收通道。在关键字chan左边的接收操作符&lt;-表示了数据的流向。相对应的，如果我们想声明一个发送通道类型，那么应该这样:</p>
+<pre data-source-line="94"><code class="hljs"><span class="hljs-keyword">type Sender <span class="hljs-built_in">char &lt;- <span class="hljs-built_in">int</span></span></span></code></pre>
+<p data-source-line="97">&nbsp;&nbsp;这次&lt;-被放在了chan的右边，并且“箭头”直指“通道”。我们可以把一个双向通道赋予上述类型的变量，就像这样:</p>
+<pre data-source-line="98"><code class="hljs"><span class="hljs-tag">var myChannel = <span class="hljs-function"><span class="hljs-title">make<span class="hljs-params">(chan int, <span class="hljs-number">3)
+<span class="hljs-tag">var sender Sender = myChannel
+<span class="hljs-tag">var receiver Receiver = myChannel</span></span></span></span></span></span></span></code></pre>
+<p data-source-line="103">&nbsp;&nbsp;但是反过来是不行的:</p>
+<pre data-source-line="104"><code class="hljs"><span class="hljs-keyword">var myChannel1 <span class="hljs-keyword">chan <span class="hljs-typename">int = sender</span></span></span></code></pre>
+<p data-source-line="107">&nbsp;&nbsp;单向通道的作用主要是约束程序对通道值的使用方式，比如，我们调用一函数时给予它一个发送通道作为参数，以此来约束它只能向该通道发送数据。又比如，一个函数将一个接受通道作为结果返回，以此来约束调用该函数的代码只能从这个通道中接收数据。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/orlion/category/963778.html" target="_blank">Go</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6538706,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/" target="_blank"><img src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/20160331143213.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followers">粉丝 - 30</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6538706,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6538706,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/orlion/p/6532960.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/orlion/p/6532960.html" title="发布于2017-03-10 20:26">Webpack前端打包工具</a><br><a href="http://www.cnblogs.com/orlion/p/6574366.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/orlion/p/6574366.html" title="发布于2017-03-18 15:36">Golang 笔记 2 函数、结构体、接口、指针</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-03-12 18:21</span> <a href="http://www.cnblogs.com/orlion/">orlion</a> 阅读(<span id="post_view_count">494</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6538706" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/orlion/p/6538706.html#" onclick="AddToWz(6538706);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=241238,cb_entryId=6538706,cb_blogApp=currentBlogApp,cb_blogUserGuid='8be9122f-2d42-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/3/12 18:21:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/orlion/p/6538706.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/orlion/p/6538706.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://group.cnblogs.com/topic/77995.html" target="_blank">【活动】阿里云双11活动开始预热 云服务器限时2折起</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="https://cloud.tencent.com/act/free?fromSource=gwzcw.562633.562633.562633" target="_blank">【推荐】腾讯云 普惠云计算 0门槛体验</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://activity.huaweicloud.com/Octoberactivity/index.html?utm_source=cnblogs&amp;utm_medium=MediaB&amp;utm_campaign=%E5%8D%8E%E4%B8%BA%E4%BA%91-10%E6%9C%88%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE&amp;utm_content=%E5%8D%9A%E5%AE%A2%E5%9B%AD%E5%86%85%E9%A1%B5C1%E7%9F%A9%E5%BD%A2&amp;utm_term=%E5%8F%8C11%E4%BF%83%E9%94%80%E6%B4%BB%E5%8A%A8" target="_blank"><img width="300" height="250" src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/24442-20171029145139367-1787068412.jpg" alt="华为云C2-1030"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/581482/" target="_blank">李连杰讲述《功守道》拍摄始末：马云这个青年演员很敬业</a><br> ·  <a href="http://news.cnblogs.com/n/581480/" target="_blank">别了！华为！</a><br> ·  <a href="http://news.cnblogs.com/n/581478/" target="_blank">微软发布Surface Pro LTE：支持全球4G 比Wi-Fi版贵150美元</a><br> ·  <a href="http://news.cnblogs.com/n/581476/" target="_blank">员工薪水不满意排行榜 微软和苹果公司排名靠前</a><br> ·  <a href="http://news.cnblogs.com/n/581479/" target="_blank">IBM在超算上模拟56量子比特量子计算机</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/32986/" target="_blank"><img width="468" height="60" src="./Golang 笔记 1 基础、基本数据类型 - orlion - 博客园_files/24442-20171027070203758-1397753435.jpg" alt="阿里云双11"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/578502/" target="_blank">为什么你参加了那么多培训，却依然表现平平？</a><br> ·  <a href="http://kb.cnblogs.com/page/579832/" target="_blank">写给初学前端工程师的一封信</a><br> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>园龄：<a href="http://home.cnblogs.com/u/orlion/" title="入园时间：2015-08-14">2年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/orlion/followers/">30</a><br>关注：<a href="http://home.cnblogs.com/u/orlion/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/orlion/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/orlion/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/orlion/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/orlion/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/orlion/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/orlion/p/6538706.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/orlion/category/805102.html">Android(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/orlion/category/805103.html">Apache(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/orlion/category/805104.html">C/C++(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/orlion/category/963778.html">Go(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/orlion/category/765712.html">Hibernate(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/orlion/category/726626.html">JAVA SE(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/orlion/category/738143.html">JAVA Web(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/orlion/category/805106.html">js(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/orlion/category/726627.html">linux(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/orlion/category/805107.html">Linux系统编程(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/orlion/category/837776.html">Minor(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/orlion/category/787371.html">mongodb(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/orlion/category/726625.html">PHP(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/orlion/category/801896.html">PHP扩展开发(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/orlion/category/726624.html">Python(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/orlion/category/788233.html">redis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/orlion/category/805109.html">Spring(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/orlion/category/762333.html">Struts2(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/orlion/category/731095.html">Symfony(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/orlion/category/830086.html">编译原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/orlion/category/764911.html">程序运行原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/orlion/category/805111.html">汇编(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/orlion/category/726629.html">设计模式(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/orlion/category/781995.html">深入理解PHP内核(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/orlion/category/810101.html">数据结构(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/orlion/category/733672.html">数据库(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/orlion/category/732203.html">算法(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/orlion/archive/2017/07.html">2017年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/orlion/archive/2017/06.html">2017年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/orlion/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/orlion/archive/2017/03.html">2017年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/orlion/archive/2017/02.html">2017年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/orlion/archive/2017/01.html">2017年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/orlion/archive/2016/12.html">2016年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/orlion/archive/2016/11.html">2016年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/orlion/archive/2016/09.html">2016年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/orlion/archive/2016/08.html">2016年8月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/orlion/archive/2016/06.html">2016年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/orlion/archive/2016/05.html">2016年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/orlion/archive/2016/04.html">2016年4月 (77)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/orlion/archive/2016/03.html">2016年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/orlion/archive/2016/02.html">2016年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/orlion/archive/2016/01.html">2016年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/orlion/archive/2015/12.html">2015年12月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/orlion/archive/2015/11.html">2015年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/orlion/archive/2015/10.html">2015年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/orlion/archive/2015/09.html">2015年9月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/orlion/archive/2015/08.html">2015年8月 (5)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://github.com/Orlion" rel="nofollow">Github</a> </li>
+<li class="c_b_p_link_desc">Orlion's Github</li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3791399">1. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">@Reidkm电子书已经找不到了，我建议你读一下《深入理解计算机系统》这本书...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3778970">2. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">帮助很大！</li>
+        <li class="recent_comment_author">--扯动脑神经</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3777314">3. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">楼主你好 请问上述内容是 电子书里的吗？ 能给个全部内容的链接吗？<br>谢谢了</li>
+        <li class="recent_comment_author">--Reidkm</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3625374">4. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">@cotyb多谢指正...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/6399325.html#3623923">5. Re:[APUE]进程控制(下)</a></li>
+        <li class="recent_comment_body">Linux相关技术交流，欢迎来我的博客留言交流哈！</li>
+        <li class="recent_comment_author">--枫爷</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">1. x86汇编程序基础(AT&amp;T语法)(6121)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4901311.html">2. java线程四种状态(5054)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5282753.html">3. php的几种运行模式CLI、CGI、FastCGI、mod_php(4618)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4980641.html">4. PHP变量在内存中的存储方式(3890)</a></li><li><a href="http://www.cnblogs.com/orlion/p/6574366.html">5. Golang 笔记 2 函数、结构体、接口、指针(2200)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">1. Minor【 PHP框架】1.简介(4)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">2. x86汇编程序基础(AT&amp;T语法)(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5813317.html">3. [汇编与C语言关系]2. main函数与启动例程(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5058441.html">4. 程序是如何执行的（一）a=a+1(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4750303.html">5. python第一天 - dict(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5350663.html">1. Android入门(九)文件存储与SharedPreferences存储(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">2. Minor【 PHP框架】1.简介(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5500258.html">3. [转]浏览器退出之后php还会继续执行么？(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5459053.html">4. 用扩展开发一个PHP类(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/7157909.html">5. 语法的二义性和token的超前扫描(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+		<div id="footer">
+			
+<!--done-->
+Copyright ©2017 orlion
+		</div><!--end: footer -->
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+</center>
+
+
+</body></html>

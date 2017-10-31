@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/orlion/p/6596523.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golang 笔记 5 go语句 - orlion - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Golang 笔记 5 go语句 - orlion - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Golang 笔记 5 go语句 - orlion - 博客园_files/bundle-LoveIsIntheAir.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Golang 笔记 5 go语句 - orlion - 博客园_files/bundle-LoveIsIntheAir-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/orlion/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/orlion/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/orlion/wlwmanifest.xml">
+<script async="" src="./Golang 笔记 5 go语句 - orlion - 博客园_files/analytics.js"></script><script src="./Golang 笔记 5 go语句 - orlion - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'orlion', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Golang 笔记 5 go语句 - orlion - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/orlion/"><img id="blogLogo" src="./Golang 笔记 5 go语句 - orlion - 博客园_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/orlion/">Orlion</a></h1>
+<h2>github.com/orlion</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/orlion/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/orlion">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/orlion/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/orlion/rss"><img src="./Golang 笔记 5 go语句 - orlion - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 231&nbsp;
+文章- 0&nbsp;
+评论- 21&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/orlion/p/6596523.html">Golang 笔记 5 go语句</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1 id="一-go语句" data-source-line="1"><span style="font-size: 14px; line-height: 1.5">&nbsp; <strong>&nbsp;Go语句和通道类型是Go语言的并发编程理念的最终体现。与defer语句相同，go语句也可以携带一个表达式语句。Go语句的执行会很快结束，并不会对当前流程的进行造成阻塞或明显的延迟。一个简单的示例:</strong></span></h1>
+<pre data-source-line="3"><code class="hljs">go fmt.<span class="hljs-function"><span class="hljs-title">Println<span class="hljs-params">(<span class="hljs-string">"Go")</span></span></span></span></code></pre>
+<p data-source-line="6">&nbsp;&nbsp;go语句仅由一个go关键字和一条表达式语句组成。同样的，go语句的执行与其携带的表达式语句的执行在时间上没有必然联系。这里能确定的仅仅是后者会在前者完成之后发生。在go语句被执行时，其携带的函数(也称为go函数)以及要传给它的若干参数会被封装成一个实体(即Goroutine),并被放入到相应的待运行队列中。Go语言的运行时系统会适时的从队列中取出待运行的Goroutine并执行相应的函数调用操作。注意，对传递给这里的函数的那些参数的求值会在go语句被执行时进行。<br>&nbsp;&nbsp;正是由于go函数的执行时间的不确定性。所以Go提供了很多方法来协调它们的运行。其中最简单粗暴的方法就是time.Sleep函数：</p>
+<pre data-source-line="8"><code class="hljs">package main
+
+<span class="hljs-keyword">import {
+    <span class="hljs-string">"fmt"
+}
+
+<span class="hljs-func"><span class="hljs-keyword">func <span class="hljs-title">main<span class="hljs-params">() {
+    go fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go!")
+}</span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="19">&nbsp;&nbsp;上面的代码运行时，不会有任何输出，因为还没等go语言运行时系统调用那个go函数执行主函数main就已经执行完毕了。函数main的执行完毕意味着整个程序的执行的结束。因此，这个go函数就不会执行。<br>&nbsp;&nbsp;当我们在上述go语句的后面添加一条对time.Sleep函数的调用语句之后情况就不同了：</p>
+<pre data-source-line="21"><code class="hljs">package main
+
+<span class="hljs-keyword">import {
+    <span class="hljs-string">"fmt"
+    <span class="hljs-string">"time"
+}
+
+<span class="hljs-func"><span class="hljs-keyword">func <span class="hljs-title">main<span class="hljs-params">() {
+    go fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go!")
+    time.<span class="hljs-type">Sleep(<span class="hljs-number">100 * time.<span class="hljs-type">Millisecond)
+}</span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="34">&nbsp;&nbsp;语句time.Sleep(100 * time.Millisecond)会把main函数的执行结束时间向后延迟100毫秒，这样go函数就会被调度执行了。<br>&nbsp;&nbsp;另外比较优雅的做法是在main函数的最后调用runtime.Gosched函数：</p>
+<pre data-source-line="36"><code class="hljs">package main
+
+<span class="hljs-keyword">import {
+    <span class="hljs-string">"fmt"
+    <span class="hljs-string">"runtime"
+}
+
+<span class="hljs-func"><span class="hljs-keyword">func <span class="hljs-title">main<span class="hljs-params">() {
+    go fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go")
+    runtime.<span class="hljs-type">Gosched()
+}</span></span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="49">&nbsp;&nbsp;runtime.Gosched函数的作用是让当前正在运行的Goroutine(这里是运行main函数的那个Goroutine)暂时“休息”一下，而让Go运行时系统转去运行其他的Goroutine(这里是与go fmt.Println("Go!"))对应并会封装fmt.Println("Go!")的那个Goroutine)。<br>&nbsp;&nbsp;还有另外的方法可以满足上述需求。如果我们要控制更多的Goroutine的运行时机的话，下面的方法更好：</p>
+<pre data-source-line="51"><code class="hljs">package main
+
+<span class="hljs-keyword">import {
+    <span class="hljs-string">"fmt"
+    <span class="hljs-string">"sync"
+}
+
+<span class="hljs-func"><span class="hljs-keyword">func <span class="hljs-title">main<span class="hljs-params">() {
+    <span class="hljs-keyword">var wg sync.<span class="hljs-type">WaitGroup
+    wg.<span class="hljs-type">Add(<span class="hljs-number">3)
+    go <span class="hljs-func"><span class="hljs-keyword">func <span class="hljs-params">() {
+        fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go!")
+        wg.<span class="hljs-type">Done()
+    }()
+    
+    go <span class="hljs-func"><span class="hljs-keyword">func<span class="hljs-params">() {
+        fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go!")
+        wg.<span class="hljs-type">Done()
+    }()
+    
+    go <span class="hljs-func"><span class="hljs-keyword">func<span class="hljs-params">() {
+        fmt.<span class="hljs-type">Println(<span class="hljs-string">"Go!")
+        wg.<span class="hljs-type">Done()
+    }()
+    
+    wg.<span class="hljs-type">Wait()
+}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<p data-source-line="80">&nbsp;&nbsp;sync.WaitGroup类型有三个方法可用--Add、Done和Wait。Add会使其所属值的一个内置整数得到相应增加，Done会使那个整数减1，而wait方法会使当前Goroutine阻塞直到那个整数为0。上例中，我们在main函数中启用了三个Goroutine来封装三个Go函数。每个匿名函数的最后都调用了wg.Done方法。并以此表达当前的go函数会立即执行结束的情况。当这三个go函数都调用过wg.Done函数之后，处于main函数最后的那条wg.Wait()语句就不会阻塞，main函数的执行将立即结束。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/orlion/category/963778.html" target="_blank">Go</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6596523,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Golang 笔记 5 go语句 - orlion - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Golang 笔记 5 go语句 - orlion - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/" target="_blank"><img src="./Golang 笔记 5 go语句 - orlion - 博客园_files/20160331143213.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/orlion/followers">粉丝 - 30</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6596523,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6596523,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/orlion/p/6591627.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/orlion/p/6591627.html" title="发布于2017-03-20 21:12">Golang 笔记 4 defer、error、panic</a><br><a href="http://www.cnblogs.com/orlion/p/6759431.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/orlion/p/6759431.html" title="发布于2017-04-24 22:11">Golang 微信机器人包</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-03-21 20:33</span> <a href="http://www.cnblogs.com/orlion/">orlion</a> 阅读(<span id="post_view_count">103</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6596523" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/orlion/p/6596523.html#" onclick="AddToWz(6596523);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=241238,cb_entryId=6596523,cb_blogApp=currentBlogApp,cb_blogUserGuid='8be9122f-2d42-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/3/21 20:33:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/orlion/p/6596523.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/orlion/p/6596523.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://group.cnblogs.com/topic/77995.html" target="_blank">【活动】阿里云双11活动开始预热 云服务器限时2折起</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="https://cloud.tencent.com/act/free?fromSource=gwzcw.562633.562633.562633" target="_blank">【推荐】腾讯云 普惠云计算 0门槛体验</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://activity.huaweicloud.com/Octoberactivity/index.html?utm_source=cnblogs&amp;utm_medium=MediaB&amp;utm_campaign=%E5%8D%8E%E4%B8%BA%E4%BA%91-10%E6%9C%88%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE&amp;utm_content=%E5%8D%9A%E5%AE%A2%E5%9B%AD%E5%86%85%E9%A1%B5C1%E7%9F%A9%E5%BD%A2&amp;utm_term=%E5%8F%8C11%E4%BF%83%E9%94%80%E6%B4%BB%E5%8A%A8" target="_blank"><img width="300" height="250" src="./Golang 笔记 5 go语句 - orlion - 博客园_files/24442-20171029145139367-1787068412.jpg" alt="华为云C2-1030"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/581482/" target="_blank">李连杰讲述《功守道》拍摄始末：马云这个青年演员很敬业</a><br> ·  <a href="http://news.cnblogs.com/n/581480/" target="_blank">别了！华为！</a><br> ·  <a href="http://news.cnblogs.com/n/581478/" target="_blank">微软发布Surface Pro LTE：支持全球4G 比Wi-Fi版贵150美元</a><br> ·  <a href="http://news.cnblogs.com/n/581476/" target="_blank">员工薪水不满意排行榜 微软和苹果公司排名靠前</a><br> ·  <a href="http://news.cnblogs.com/n/581479/" target="_blank">IBM在超算上模拟56量子比特量子计算机</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/32986/" target="_blank"><img width="468" height="60" src="./Golang 笔记 5 go语句 - orlion - 博客园_files/24442-20171027070203758-1397753435.jpg" alt="阿里云双11"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/578502/" target="_blank">为什么你参加了那么多培训，却依然表现平平？</a><br> ·  <a href="http://kb.cnblogs.com/page/579832/" target="_blank">写给初学前端工程师的一封信</a><br> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/orlion/">orlion</a><br>园龄：<a href="http://home.cnblogs.com/u/orlion/" title="入园时间：2015-08-14">2年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/orlion/followers/">30</a><br>关注：<a href="http://home.cnblogs.com/u/orlion/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8be9122f-2d42-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/orlion/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/orlion/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/orlion/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/orlion/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/orlion/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/orlion/p/6596523.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/orlion/category/805102.html">Android(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/orlion/category/805103.html">Apache(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/orlion/category/805104.html">C/C++(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/orlion/category/963778.html">Go(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/orlion/category/765712.html">Hibernate(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/orlion/category/726626.html">JAVA SE(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/orlion/category/738143.html">JAVA Web(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/orlion/category/805106.html">js(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/orlion/category/726627.html">linux(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/orlion/category/805107.html">Linux系统编程(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/orlion/category/837776.html">Minor(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/orlion/category/787371.html">mongodb(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/orlion/category/726625.html">PHP(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/orlion/category/801896.html">PHP扩展开发(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/orlion/category/726624.html">Python(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/orlion/category/788233.html">redis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/orlion/category/805109.html">Spring(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/orlion/category/762333.html">Struts2(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/orlion/category/731095.html">Symfony(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/orlion/category/830086.html">编译原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/orlion/category/764911.html">程序运行原理(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/orlion/category/805111.html">汇编(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/orlion/category/726629.html">设计模式(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/orlion/category/781995.html">深入理解PHP内核(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/orlion/category/810101.html">数据结构(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/orlion/category/733672.html">数据库(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/orlion/category/732203.html">算法(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/orlion/archive/2017/07.html">2017年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/orlion/archive/2017/06.html">2017年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/orlion/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/orlion/archive/2017/03.html">2017年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/orlion/archive/2017/02.html">2017年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/orlion/archive/2017/01.html">2017年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/orlion/archive/2016/12.html">2016年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/orlion/archive/2016/11.html">2016年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/orlion/archive/2016/09.html">2016年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/orlion/archive/2016/08.html">2016年8月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/orlion/archive/2016/06.html">2016年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/orlion/archive/2016/05.html">2016年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/orlion/archive/2016/04.html">2016年4月 (77)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/orlion/archive/2016/03.html">2016年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/orlion/archive/2016/02.html">2016年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/orlion/archive/2016/01.html">2016年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/orlion/archive/2015/12.html">2015年12月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/orlion/archive/2015/11.html">2015年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/orlion/archive/2015/10.html">2015年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/orlion/archive/2015/09.html">2015年9月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/orlion/archive/2015/08.html">2015年8月 (5)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://github.com/Orlion" rel="nofollow">Github</a> </li>
+<li class="c_b_p_link_desc">Orlion's Github</li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3791399">1. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">@Reidkm电子书已经找不到了，我建议你读一下《深入理解计算机系统》这本书...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3778970">2. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">帮助很大！</li>
+        <li class="recent_comment_author">--扯动脑神经</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5058441.html#3777314">3. Re:程序是如何执行的（一）a=a+1</a></li>
+        <li class="recent_comment_body">楼主你好 请问上述内容是 电子书里的吗？ 能给个全部内容的链接吗？<br>谢谢了</li>
+        <li class="recent_comment_author">--Reidkm</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/5765339.html#3625374">4. Re:x86汇编程序基础(AT&amp;T语法)</a></li>
+        <li class="recent_comment_body">@cotyb多谢指正...</li>
+        <li class="recent_comment_author">--orlion</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/orlion/p/6399325.html#3623923">5. Re:[APUE]进程控制(下)</a></li>
+        <li class="recent_comment_body">Linux相关技术交流，欢迎来我的博客留言交流哈！</li>
+        <li class="recent_comment_author">--枫爷</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">1. x86汇编程序基础(AT&amp;T语法)(6121)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4901311.html">2. java线程四种状态(5054)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5282753.html">3. php的几种运行模式CLI、CGI、FastCGI、mod_php(4618)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4980641.html">4. PHP变量在内存中的存储方式(3890)</a></li><li><a href="http://www.cnblogs.com/orlion/p/6574366.html">5. Golang 笔记 2 函数、结构体、接口、指针(2200)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">1. Minor【 PHP框架】1.简介(4)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5765339.html">2. x86汇编程序基础(AT&amp;T语法)(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5813317.html">3. [汇编与C语言关系]2. main函数与启动例程(3)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5058441.html">4. 程序是如何执行的（一）a=a+1(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/4750303.html">5. python第一天 - dict(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/orlion/p/5350663.html">1. Android入门(九)文件存储与SharedPreferences存储(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5558842.html">2. Minor【 PHP框架】1.简介(2)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5500258.html">3. [转]浏览器退出之后php还会继续执行么？(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/5459053.html">4. 用扩展开发一个PHP类(1)</a></li><li><a href="http://www.cnblogs.com/orlion/p/7157909.html">5. 语法的二义性和token的超前扫描(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+		<div id="footer">
+			
+<!--done-->
+Copyright ©2017 orlion
+		</div><!--end: footer -->
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+</center>
+
+
+</body></html>
