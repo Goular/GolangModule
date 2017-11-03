@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net"
 	"fmt"
 	"os"
+	"net"
 )
 
 func CheckError(err error) {
@@ -15,10 +15,12 @@ func CheckError(err error) {
 }
 
 func main() {
-	//设置监听端口
-	listen_socket, err := net.Listen("tcp", "127.0.0.1:8080")
+	//客户端要进行拨号
+	conn, err := net.Dial("tcp", "127.0.0.1:8080")
 	CheckError(err)
-	//defer即使是异常也会执行的
-	defer listen_socket.Close()
+	defer conn.Close()
 
+	//进行写 操作
+	conn.Write([]byte("Hello,I come from GuangZhou"))
+	fmt.Println("Client sent the Message to Server")
 }
