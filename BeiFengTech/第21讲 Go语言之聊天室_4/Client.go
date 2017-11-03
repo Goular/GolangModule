@@ -50,7 +50,13 @@ func main() {
 	buf := make([]byte, 1024)
 	for {
 		numOfBytes, err := conn.Read(buf)
-		CheckError(err)
+		//CheckError(err)
+
+		if err != nil{
+			conn.Close()
+			fmt.Println("Client connect failure :"+err.Error())
+			break
+		}
 
 		/*结尾buf[0:numOfBytes]的原因是：numOfBytes是指接收的字节数 如果只用string(buf)
 		可能会导致接收字符串中有其他之前接收的字符

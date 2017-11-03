@@ -5,18 +5,28 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"log"
 )
 
-var onlineConns = make(map[string]net.Conn)//存储客户端链接映射 key为链接ip:port value为连接对象conn
-var messageQueue = make(chan string, 1000)//消息队列 带缓冲的buf
+//定义日志的位置
+const (
+	//记录错误日志的路径
+	LOG_DIRECTORY = "./test.log"
+)
+
+var onlineConns = make(map[string]net.Conn) //存储客户端链接映射 key为链接ip:port value为连接对象conn
+var messageQueue = make(chan string, 1000)  //消息队列 带缓冲的buf
+var logFile *os.File
+var logger *log.Logger
 
 var quitChan = make(chan bool)
 
 func CheckError(err error) {
 	if err != nil {
-		fmt.Println("Error:%s", err.Error())
-		//系统退出，0代表正常退出，非零代表异常退出
-		os.Exit(1)
+		panic(err)
+		//fmt.Println("Error:%s", err.Error())
+		////系统退出，0代表正常退出，非零代表异常退出
+		//os.Exit(1)
 	}
 }
 
@@ -25,7 +35,16 @@ func CheckError(err error) {
 func ProcessInfo(conn net.Conn) { //这个方法属于生产者，因为将数据变为消息队列
 	//由于是在协程工作，所以可以进行耗时操作
 	buf := make([]byte, 1024)
-	defer conn.Close();
+	defer func(conn net.Conn) {
+		//查找连接的IP
+		addr := fmt.Sprintf("%s", conn.RemoteAddr())
+		//删除Map中关于相关IP的连接
+		delete(onlineConns, addr)
+		conn.Close();
+		for key := range onlineConns {
+			fmt.Println("now online conns:" + key)
+		}
+	}(conn) //采用匿名函数的方式 调用defer
 	for {
 		//第一个参数为缓冲的数量大小
 		numOfBytes, err := conn.Read(buf);
@@ -67,23 +86,45 @@ func doProcessMessage(message string) {
 	contents := strings.Split(message, "#")
 	if len(contents) > 1 {
 		addr := contents[0]
-		sendMessage := contents[1]
+		sendMessage := strings.Join(contents[1:], "#")//这么做是为了防止 消息体也含有"#"
 
 		addr = strings.Trim(addr, " ")
 
-		//通过addr查看是否有链接对象
 		if conn, ok := onlineConns[addr]; ok {
 			_, err := conn.Write([]byte(sendMessage))
 			if err != nil {
 				fmt.Println("online conns send failure!")
 			}
-		}else{
-			fmt.Println("找不到"+addr)
+		}
+	} else {
+		//走到这里 说明客户端调用list命令 查看系统当前链接ip
+		contents := strings.Split(message, "*")
+		if strings.ToUpper(contents[1]) == "LIST" {
+			var ips string = ""
+			for i := range onlineConns {
+				ips = ips + "|" + i
+			}
+			if conn, ok := onlineConns[contents[0]]; ok {
+				_, err := conn.Write([]byte(ips))
+				if err != nil {
+					fmt.Println("online conns send failure!")
+				}
+			}
 		}
 	}
 }
 
 func main() {
+	//设置日志打开
+	logFile, err := os.OpenFile(LOG_DIRECTORY, os.O_RDWR|os.O_CREATE, 0)
+	if err != nil {
+		fmt.Println("log file create failure!")
+		os.Exit(-1)
+	}
+	defer logFile.Close()
+	//利用go自带的log 将打开文件对象生成日志文件对象
+	logger = log.New(logFile,"\r\n",log.Ldate|log.Ltime|log.Llongfile)
+
 	//设置监听端口
 	listen_socket, err := net.Listen("tcp", "127.0.0.1:8080")
 	CheckError(err)
@@ -92,6 +133,9 @@ func main() {
 
 	fmt.Println("Server is Waiting...")
 
+	logger.Println("I am writing the logs...")
+
+	//开启消费者协程
 	go ConsumeMessage()
 
 	//由于访问人很多，所以我们进行死循环
