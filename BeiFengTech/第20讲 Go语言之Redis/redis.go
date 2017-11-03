@@ -7,8 +7,8 @@ import (
 
 func main() {
 	client := redis.NewClient(&redis.Options{
-		Addr:     "39.108.171.170:6379",
-		Password: "3071611103",
+		Addr:     "IP地址:6379",
+		Password: "密码",
 		DB:       0,
 	})
 	CheckConnection(client)
