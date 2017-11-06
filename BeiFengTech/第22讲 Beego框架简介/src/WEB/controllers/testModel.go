@@ -5,6 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/astaxie/beego/orm"
 	"fmt"
+	"WEB/models"
 )
 
 type UserInfo struct {
@@ -65,9 +66,15 @@ func (this *TestModelController) Get() {
 
 	//采用queryBuilder方式进行读取
 	var users []UserInfo
-	qb,_ := orm.NewQueryBuilder("mysql")
+	qb, _ := orm.NewQueryBuilder("mysql")
 	qb.Select("password").From("user_info").Where("username=?").Limit(1)
 	sql := qb.String()
-	o.Raw(sql,"lisi").QueryRows(&users)
+	o.Raw(sql, "lisi").QueryRows(&users)
 	this.Ctx.WriteString(fmt.Sprintf("User info：%v", users))
+}
+
+func (this *TestModelController) Get2() {
+	user := models.UserInfo{Username: "liusi", Password: "8755522k"}
+	models.AddUser(&user)
+	this.Ctx.WriteString("Call Model Success")
 }
