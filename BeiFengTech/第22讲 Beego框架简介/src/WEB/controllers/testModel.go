@@ -40,10 +40,18 @@ func (this *TestModelController) Get() {
 	//this.Ctx.WriteString(fmt.Sprintf("user的内容:%v", user))
 
 	//删除数据操作
-	user := UserInfo{}
-	user.Id = 3
-	num, err := o.Delete(&user)
-	if err != nil {
-		this.Ctx.WriteString(fmt.Sprintf("num:%v", num))
+	//user := UserInfo{}
+	//user.Id = 3
+	//num, err := o.Delete(&user)
+	//if err != nil {
+	//	this.Ctx.WriteString(fmt.Sprintf("num:%v", num))
+	//}
+
+	//原生SQL查询
+	var maps []orm.Params
+	o.Raw("select * from user_info").Values(&maps)
+
+	for _, v := range maps {
+		this.Ctx.WriteString(fmt.Sprintf("User info %v",v))
 	}
 }
