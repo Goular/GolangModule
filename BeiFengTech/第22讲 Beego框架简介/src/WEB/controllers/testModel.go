@@ -20,6 +20,7 @@ type TestModelController struct {
 func (this *TestModelController) Get() {
 	orm.RegisterDataBase("default", "mysql", "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8", 30)
 	orm.RegisterModel(new(UserInfo))
+	orm.Debug = true
 
 	o := orm.NewOrm()
 
@@ -48,10 +49,25 @@ func (this *TestModelController) Get() {
 	//}
 
 	//原生SQL查询
-	var maps []orm.Params
-	o.Raw("select * from user_info").Values(&maps)
+	//var maps []orm.Params
+	//o.Raw("select * from user_info").Values(&maps)
+	//
+	//for _, v := range maps {
+	//	this.Ctx.WriteString(fmt.Sprintf("User info %v",v))
+	//}
 
-	for _, v := range maps {
-		this.Ctx.WriteString(fmt.Sprintf("User info %v",v))
-	}
+	//原生SQL查询 二
+	//var users []UserInfo
+	//o.Raw("select * from user_info").QueryRows(&users)
+	//for _, v := range users {
+	//	this.Ctx.WriteString(fmt.Sprintf("User info：%v", v))
+	//}
+
+	//采用queryBuilder方式进行读取
+	var users []UserInfo
+	qb,_ := orm.NewQueryBuilder("mysql")
+	qb.Select("password").From("user_info").Where("username=?").Limit(1)
+	sql := qb.String()
+	o.Raw(sql,"lisi").QueryRows(&users)
+	this.Ctx.WriteString(fmt.Sprintf("User info：%v", users))
 }
