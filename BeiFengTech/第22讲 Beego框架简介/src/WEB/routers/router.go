@@ -14,5 +14,8 @@ func init() {
 	beego.Router("/testModel", &controllers.TestModelController{}, "get:Get;post:Post")
 	beego.Router("/testModel2", &controllers.TestModelController{}, "get:Get2")
 	beego.Router("/testView", &controllers.TestViewController{}, "get:Get")
+	beego.Router("/testConfig", &controllers.TestConfigController{}, "get:Get")
+	beego.Router("/testHttpLib", &controllers.TestHttpLibController{}, "get:Get")
+	beego.Router("/testContext", &controllers.TestContextController{}, "get:Get")
 
 }
