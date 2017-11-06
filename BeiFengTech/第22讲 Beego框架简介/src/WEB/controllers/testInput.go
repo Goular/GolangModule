@@ -22,6 +22,7 @@ func (this *TestInputController) Get() {
 	this.Ctx.WriteString(name + "</html>")
 }
 
+//方法三
 //func (this *TestInputController) Post() {
 //	u := new(User)
 //	if err := this.ParseForm(u); err != nil {
@@ -31,6 +32,7 @@ func (this *TestInputController) Get() {
 //	this.Ctx.WriteString(u.Password + "</html>")
 //}
 
+//方法四
 //在配置文件里设置 copyrequestbody = true
 func (this *TestInputController) Post() {
 	var ob models.Object
