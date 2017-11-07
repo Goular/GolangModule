@@ -42,7 +42,7 @@ func (this *CrawlMovieController) CrawlMovie() {
 	//this.Ctx.WriteString("<h2>电影片长:" + models.GetMovieRunningTime(sMovieHtml) + "</h2><br/>")
 
 	//连接到redis
-	models.ConnectRedis("39.108.171.170:6379")
+	models.ConnectRedis("39.108.171.170:6379","3071611103",2)
 	urls := models.GetMovieUrls(sMovieHtml)
 
 	for _, url := range urls {

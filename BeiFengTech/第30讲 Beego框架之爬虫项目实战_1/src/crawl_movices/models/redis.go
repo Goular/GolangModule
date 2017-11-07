@@ -1,46 +1,51 @@
 package models
 
 import (
-	"github.com/astaxie/goredis"
+	"github.com/go-redis/redis"
 )
 
 const (
-	URL_QUEUE = "url_queue"
+	URL_QUEUE     = "url_queue"
 	URL_VISIT_SET = "url_visit_set"
 )
 
 var (
-	client goredis.Client
+	client redis.Client
 )
 
-func ConnectRedis(addr string){
-	client.Addr = addr
-	//client.Password = "3071611103"
+func ConnectRedis(addr string, password string, db int) {
+	client = *redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Password: password,
+		DB:       db,
+	})
 }
 
-func PutinQueue(url string) error{
-	return client.Lpush(URL_QUEUE, []byte(url))
+func PutinQueue(url string) error {
+	return client.LPush(URL_QUEUE, []byte(url)).Err()
 }
 
-func PopfromQueue() string{
-	res,err := client.Rpop(URL_QUEUE)
-	if err != nil{
+func PopfromQueue() string {
+	res, err := client.RPop(URL_QUEUE).Result()
+	if err != nil {
 		panic(err)
 	}
-
 	return string(res)
 }
 
-func AddToSet(url string){
-	client.Sadd(URL_VISIT_SET, []byte(url))
+func AddToSet(url string) error {
+	return client.SAdd(URL_VISIT_SET, []byte(url)).Err()
 }
 
-func IsVisit(url string) bool{
-	bIsVisit, err := client.Sismember(URL_VISIT_SET, []byte(url))
-	if err != nil{
+func IsVisit(url string) bool {
+	bIsVisit, err := client.SIsMember(URL_VISIT_SET, []byte(url)).Result()
+	if err != nil {
 		return false
 	}
-
 	return bIsVisit
 }
 
+//测试是否联通
+func CheckConnection() (string, error) {
+	return client.Ping().Result()
+}
