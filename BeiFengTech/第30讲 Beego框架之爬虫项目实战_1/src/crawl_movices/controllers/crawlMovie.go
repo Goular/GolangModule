@@ -2081,5 +2081,9 @@ for(var i = 0, l = accounts.length; i < l; i++) {
 	this.Ctx.WriteString("<h1>电影名称:" + models.GetMovieName(sMovieHtml) + "</h1><br/>")
 	this.Ctx.WriteString("<h2>电影导演:" + models.GetMovieDirector(sMovieHtml) + "</h2><br/>")
 	this.Ctx.WriteString("<h2>电影主演:" + models.GetMovieMainCharacters(sMovieHtml) + "</h2><br/>")
+	this.Ctx.WriteString("<h2>豆瓣评分:" + models.GetMovieGrade(sMovieHtml) + "</h2><br/>")
+	this.Ctx.WriteString("<h2>电影类型:" + models.GetMovieGenre(sMovieHtml) + "</h2><br/>")
+	this.Ctx.WriteString("<h2>上映日期:" + models.GetMovieOnTime(sMovieHtml) + "</h2><br/>")
+	this.Ctx.WriteString("<h2>电影片长:" + models.GetMovieRunningTime(sMovieHtml) + "</h2><br/>")
 
 }

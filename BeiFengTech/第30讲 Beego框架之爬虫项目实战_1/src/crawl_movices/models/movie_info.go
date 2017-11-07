@@ -4,6 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/astaxie/beego/orm"
 	"regexp"
+	"strings"
 )
 
 var (
@@ -70,5 +71,42 @@ func GetMovieMainCharacters(movieHtml string) string {
 	for _, v := range result {
 		mainCharacters += v[1] + "/"
 	}
-	return mainCharacters
+	//清除左右的多余的"/"号
+	return strings.Trim(mainCharacters,"/")
+}
+
+//获取电影的豆瓣评分
+func GetMovieGrade(movieHtml string)string{
+	reg := regexp.MustCompile(`<strong.*?property="v:average">(.*?)</strong>`)
+	result := reg.FindAllStringSubmatch(movieHtml, -1)
+	return string(result[0][1])
+}
+
+//获取电影的电影类型
+func GetMovieGenre(movieHtml string)string{
+	reg := regexp.MustCompile(`<span.*?property="v:genre">(.*?)</span>`)
+	result := reg.FindAllStringSubmatch(movieHtml, -1)
+
+	movieGenre := ""
+	for _,v := range result{
+		movieGenre += v[1] + "/"
+	}
+	return movieGenre
+}
+
+func GetMovieOnTime(movieHtml string) string{
+	reg := regexp.MustCompile(`<span.*?property="v:initialReleaseDate".*?>(.*?)</span>`)
+	result := reg.FindAllStringSubmatch(movieHtml, -1)
+	movieOnTime := ""
+	for _,v := range result{
+		movieOnTime += v[1] + "/"
+	}
+	return strings.Trim(movieOnTime,"/")
+}
+
+func GetMovieRunningTime(movieHtml string) string{
+	reg := regexp.MustCompile(`<span.*?property="v:runtime".*?>(.*?)</span>`)
+	result := reg.FindAllStringSubmatch(movieHtml, -1)
+
+	return string(result[0][1])
 }
