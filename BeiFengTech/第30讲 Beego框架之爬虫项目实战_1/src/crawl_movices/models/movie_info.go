@@ -62,7 +62,7 @@ func GetMovieName(movieHtml string) (string) {
 	}
 }
 
-//获取电影的主要演员列表
+//获取电影的主要演员列表,一定要使用非贪婪模式才能抓取到有用的信息
 func GetMovieMainCharacters(movieHtml string) string {
 	reg := regexp.MustCompile(`<a.*?rel="v:starring">(.*?)</a>`)
 	result := reg.FindAllStringSubmatch(movieHtml, -1)
