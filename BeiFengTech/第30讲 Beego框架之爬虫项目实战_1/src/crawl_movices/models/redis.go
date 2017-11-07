@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	URL_QUEUE     = "url_queue"
+	URL_QUEUE = "url_queue"
 	URL_VISIT_SET = "url_visit_set"
 )
 
@@ -13,29 +13,34 @@ var (
 	client goredis.Client
 )
 
-func ConnectRedis(addr string, port string, database_number int, password string) {
-	//添加访问的参数
-	client.Addr = addr + ":" + port
-	client.Db = database_number
-	client.Password = password
+func ConnectRedis(addr string){
+	client.Addr = addr
+	//client.Password = "3071611103"
 }
 
-//将数据放入到Redis的列表队列中
-func PushInQueue(url string) {
-	client.Lpush(URL_QUEUE, []byte(url))
+func PutinQueue(url string) error{
+	return client.Lpush(URL_QUEUE, []byte(url))
 }
 
-//将数据从列表队列中弹出
-func PopFromQueue(url string) ([]byte, error) {
-	return client.Rpop(URL_QUEUE)
+func PopfromQueue() string{
+	res,err := client.Rpop(URL_QUEUE)
+	if err != nil{
+		panic(err)
+	}
+
+	return string(res)
 }
 
-//将数据添加到SET中
-func AddToSet(url string) {
+func AddToSet(url string){
 	client.Sadd(URL_VISIT_SET, []byte(url))
 }
 
-//判断特定的URL是否进行了浏览
-func IsVisit(url string) (bool, error) {
-	return client.Sismember(URL_VISIT_SET, []byte(url))
+func IsVisit(url string) bool{
+	bIsVisit, err := client.Sismember(URL_VISIT_SET, []byte(url))
+	if err != nil{
+		return false
+	}
+
+	return bIsVisit
 }
+
