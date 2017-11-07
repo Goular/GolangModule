@@ -49,3 +49,7 @@ func IsVisit(url string) bool {
 func CheckConnection() (string, error) {
 	return client.Ping().Result()
 }
+
+func GetQueueLength() (int64, error) {
+	return client.LLen(URL_QUEUE).Result()
+}
