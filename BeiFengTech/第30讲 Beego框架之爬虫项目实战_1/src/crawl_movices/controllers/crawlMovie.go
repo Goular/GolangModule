@@ -13,7 +13,7 @@ type CrawlMovieController struct {
 
 func (this *CrawlMovieController) CrawlMovie() {
 	//sUrl := "https://movie.douban.com/subject/26688480/?from=subject-page"
-	sUrl := "https://movie.douban.com/subject/3604148/?tag=%E7%83%AD%E9%97%A8&from=gaia"
+	sUrl := "https://movie.douban.com/feed/subject/3604148/reviews]<br/>"
 	rsp := httplib.Get(sUrl)
 	sMovieHtml, err := rsp.String()
 	if err != nil {
@@ -31,8 +31,8 @@ func (this *CrawlMovieController) CrawlMovie() {
 	movieInfo.Movie_span = models.GetMovieRunningTime(sMovieHtml)
 
 	//创建好对象后，添加到数据库
-	id, _ := models.AddMovie(&movieInfo)
-	this.Ctx.WriteString(fmt.Sprintf("%v", id))
+	//id, _ := models.AddMovie(&movieInfo)
+	//this.Ctx.WriteString(fmt.Sprintf("%v", id))
 
 	//this.Ctx.WriteString("<h1>电影名称:" + models.GetMovieName(sMovieHtml) + "</h1><br/>")
 	//this.Ctx.WriteString("<h2>电影导演:" + models.GetMovieDirector(sMovieHtml) + "</h2><br/>")
@@ -42,4 +42,11 @@ func (this *CrawlMovieController) CrawlMovie() {
 	//this.Ctx.WriteString("<h2>上映日期:" + models.GetMovieOnTime(sMovieHtml) + "</h2><br/>")
 	//this.Ctx.WriteString("<h2>电影片长:" + models.GetMovieRunningTime(sMovieHtml) + "</h2><br/>")
 
+	//连接到Redis
+	models.ConnectRedis("127.0.0.1", "6379", 1, "3071611103")
+	urls := models.GetMovieUrls(sMovieHtml)
+	for _, url := range urls {
+		models.PushInQueue(url)
+	}
+	this.Ctx.WriteString(fmt.Sprintf("%v<br/>", urls))
 }
