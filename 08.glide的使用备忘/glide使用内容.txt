@@ -1,0 +1,22 @@
+﻿有时候要执行 glide cc 才能出现
+设置好的镜像连接执行成功
+
+
+注意:有时候不能使用glide install 获取 golang/x 的内容的时候，我们可以删除yaml，同时glide cc
+重新操作
+
+$ rm -rf ~/.glide
+$ mkdir -p ~/.glide
+$ glide mirror set https://golang.org/x/mobile https://github.com/golang/mobile --vcs git
+$ glide mirror set https://golang.org/x/crypto https://github.com/golang/crypto --vcs git
+$ glide mirror set https://golang.org/x/net https://github.com/golang/net --vcs git
+$ glide mirror set https://golang.org/x/tools https://github.com/golang/tools --vcs git
+$ glide mirror set https://golang.org/x/text https://github.com/golang/text --vcs git
+$ glide mirror set https://golang.org/x/image https://github.com/golang/image --vcs git
+$ glide mirror set https://golang.org/x/sys https://github.com/golang/sys --vcs git
+
+然后在项目中执行
+$ glide init
+$ glide install
+
+https://github.com/Masterminds/glide/issues/772

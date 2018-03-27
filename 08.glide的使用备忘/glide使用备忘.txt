@@ -1,0 +1,10 @@
+安装glide
+
+$ go get github.com/Masterminds/glide
+$ go install github.com/Masterminds/glide
+
+命令只需要知道两个
+glide init        // 创建文件夹的yaml文件
+glide install     // 没有vendor文件夹和glide.lock文件执行才有用，用于首次安装glide.yaml的内容
+glide up	  // 存在了vendor文件夹和glide.lock文件 ，在glide.yaml中更新了内容，执行这个，目前我们的项目更改glide.yaml的内容执行这个即可
+glide get 库名称即可	 // 添加并下载依赖 ,与go get作用一样，就是只会下载到vendor下，而不会下载到$GOPATH/src目录下面
