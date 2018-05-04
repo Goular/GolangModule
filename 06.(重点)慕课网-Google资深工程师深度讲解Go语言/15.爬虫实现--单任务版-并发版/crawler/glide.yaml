@@ -1,0 +1,7 @@
+glipackage: baseLearn/15.爬虫实现--单任务版-并发版/crawler(c)
+import:
+- package: golang.org/x/net/html/charset
+- package: golang.org/x/text/encoding
+  subpackages:
+  - unicode
+- package: golang.org/x/text/transform
