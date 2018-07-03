@@ -11,3 +11,13 @@
 r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 群组中间件：只要在群组路由上注册中间件函数即可。
 
+JWT由三段内容构成
+即header，payload，signature三部分构成
+
+如何进行 API 身份验证
+API 身份认证包括两步：
+
+签发 token
+API 添加认证 middleware
+
+可以看到携带 token 后验证通过，成功创建用户。通过 HTTP Header Authorization: Bearer $token 来携带 token。携带 token 后不需要再次查询数据库核对密码，即可完成授权。

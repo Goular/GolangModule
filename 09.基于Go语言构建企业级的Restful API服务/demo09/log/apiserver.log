@@ -809,3 +809,24 @@
 {"level":"INFO","timestamp":"2018-07-03 16:44:10.153","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | GET /v1/user/2 | {code: 20102, message: The user was not found.}"}
 {"level":"INFO","timestamp":"2018-07-03 16:44:10.797","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | GET /v1/user/2 | {code: 20102, message: The user was not found.}"}
 {"level":"INFO","timestamp":"2018-07-03 16:44:11.602","file":"middleware/logging.go:84","msg":"1.0022ms      | 127.0.0.1    | GET /v1/user/2 | {code: 20102, message: The user was not found.}"}
+{"level":"ERROR","timestamp":"2018-07-03 20:24:42.461","file":"model/init.go:34","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"Error 1045: Access denied for user 'root'@'localhost' (using password: YES)"}}
+{"level":"INFO","timestamp":"2018-07-03 20:24:42.610","file":"demo09/main.go:75","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2018-07-03 20:24:43.116","file":"demo09/main.go:72","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2018-07-03 20:26:30.341","file":"middleware/logging.go:84","msg":"44.9722ms     | 127.0.0.1    | GET /v1/user/1 | {code: 20102, message: The user was not found.}"}
+{"level":"INFO","timestamp":"2018-07-03 20:26:57.658","file":"middleware/logging.go:84","msg":"7.9954ms      | 127.0.0.1    | GET /v1/user/0 | {code: 20102, message: The user was not found.}"}
+{"level":"ERROR","timestamp":"2018-07-03 20:27:18.883","file":"middleware/logging.go:76","msg":"response body can not unmarshal to model.Response struct, body: ``","data":{"error":"unexpected end of JSON input"}}
+{"level":"INFO","timestamp":"2018-07-03 20:27:18.883","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | GET /v1/users | {code: 10001, message: unexpected end of JSON input}"}
+{"level":"INFO","timestamp":"2018-07-03 20:27:41.125","file":"middleware/logging.go:84","msg":"10.9927ms     | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-03 23:34:51.746","file":"config/config.go:57","msg":"Config file changed: C:\\Users\\zhaoj\\go\\src\\apiServer\\demo09\\conf\\config.yaml"}
+{"level":"INFO","timestamp":"2018-07-03 23:35:21.554","file":"config/config.go:57","msg":"Config file changed: C:\\Users\\zhaoj\\go\\src\\apiServer\\demo09\\conf\\config.yaml"}
+{"level":"ERROR","timestamp":"2018-07-03 23:59:45.125","file":"model/init.go:34","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"Error 1045: Access denied for user 'root'@'localhost' (using password: YES)"}}
+{"level":"INFO","timestamp":"2018-07-03 23:59:45.232","file":"demo09/main.go:75","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2018-07-03 23:59:45.736","file":"demo09/main.go:72","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2018-07-03 23:59:52.734","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | GET /v1/user | {code: 20103, message: The token was invalid.}"}
+{"level":"INFO","timestamp":"2018-07-04 00:01:22.750","file":"middleware/logging.go:84","msg":"108.9326ms    | 127.0.0.1    | POST /login | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-04 00:02:31.809","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | POST /v1/user | {code: 20103, message: The token was invalid.}"}
+{"level":"INFO","timestamp":"2018-07-04 00:03:11.640","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | POST /v1/user | {code: 20103, message: The token was invalid.}"}
+{"level":"INFO","timestamp":"2018-07-04 00:04:34.128","file":"middleware/logging.go:84","msg":"96.9409ms     | 127.0.0.1    | POST /login | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-04 00:06:58.855","file":"middleware/logging.go:84","msg":"11.9902ms     | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
+{"level":"INFO","timestamp":"2018-07-04 00:07:56.918","file":"middleware/logging.go:84","msg":"0s            | 127.0.0.1    | GET /v1/user | {code: 20103, message: The token was invalid.}"}
+{"level":"INFO","timestamp":"2018-07-04 00:08:14.824","file":"middleware/logging.go:84","msg":"6.9951ms      | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}
